@@ -837,6 +837,11 @@ button {
     background: rgba(240, 184, 102, 0.1);
 }
 
+.pub-venue.preprint {
+    color: var(--text-secondary);
+    background: rgba(136, 136, 160, 0.12);
+}
+
 .pub-status {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
