@@ -38,7 +38,8 @@ function initNav() {
         });
     });
 
-    // Active link on scroll
+    // Active link on scroll (threshold 0: tall sections never reach a ratio
+    // threshold inside the narrow observation band)
     const navObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -48,7 +49,7 @@ function initNav() {
                 });
             }
         });
-    }, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+    }, { threshold: 0, rootMargin: '-80px 0px -50% 0px' });
 
     sections.forEach(section => navObserver.observe(section));
 }
