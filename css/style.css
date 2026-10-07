@@ -941,6 +941,16 @@ button {
     color: var(--accent);
 }
 
+.pub-authors sup {
+    font-size: 0.75em;
+    line-height: 0;
+}
+
+.pub-note {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
 .pub-meta {
     display: flex;
     align-items: center;
