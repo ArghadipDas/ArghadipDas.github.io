@@ -180,6 +180,10 @@ function initStatCounters() {
     const stats = document.querySelectorAll('.stat-number');
     let animated = false;
 
+    // The markup holds the final values (shown without JS); start from 0 only
+    // when the count-up animation will run.
+    if (!prefersReducedMotion) stats.forEach(stat => { stat.textContent = '0'; });
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !animated) {

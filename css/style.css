@@ -441,7 +441,7 @@ button {
 }
 
 .stat-number {
-    display: block;
+    display: inline-block;
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--accent);
