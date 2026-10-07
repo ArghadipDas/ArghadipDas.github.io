@@ -554,7 +554,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 28px;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s, box-shadow 0.2s;
 }
 
 .edu-card:hover {
@@ -741,7 +741,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 28px;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    transition: opacity 0.6s ease, transform 0.25s, border-color 0.25s, box-shadow 0.25s;
 }
 
 .research-card:hover {
@@ -909,7 +909,7 @@ button {
     gap: 16px;
     padding: 16px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    transition: opacity 0.3s;
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .pub-entry.hidden {
@@ -1070,7 +1070,7 @@ button {
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 24px;
-    transition: border-color 0.2s;
+    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s;
 }
 
 .award-card:hover {

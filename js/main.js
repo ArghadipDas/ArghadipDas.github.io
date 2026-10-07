@@ -59,13 +59,12 @@ function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver(entries => {
-        entries.forEach((entry, i) => {
+        // Stagger elements that come into view together; cap the delay so
+        // entries deep in long lists don't lag behind the scroll
+        let batchIdx = 0;
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Stagger siblings
-                const parent = entry.target.parentElement;
-                const siblings = Array.from(parent.querySelectorAll(':scope > .reveal'));
-                const idx = siblings.indexOf(entry.target);
-                const delay = idx >= 0 ? idx * 100 : 0;
+                const delay = Math.min(batchIdx++, 5) * 100;
 
                 setTimeout(() => {
                     entry.target.classList.add('revealed');
