@@ -609,6 +609,8 @@ button {
 }
 
 .research-card {
+    display: flex;
+    flex-direction: column;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -697,6 +699,7 @@ button {
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-top: auto;
     padding-top: 16px;
     border-top: 1px solid var(--border);
 }
