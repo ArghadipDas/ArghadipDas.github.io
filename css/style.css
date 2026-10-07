@@ -754,6 +754,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
@@ -768,6 +769,7 @@ button {
 }
 
 .card-icon {
+    flex-shrink: 0;
     color: var(--text-secondary);
     opacity: 0.6;
 }
@@ -1281,6 +1283,9 @@ button {
         right: -100%;
         width: 280px;
         height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
         background: var(--bg-secondary);
         flex-direction: column;
         align-items: flex-start;
@@ -1397,8 +1402,27 @@ button {
         gap: 4px;
     }
 
+    .edu-card {
+        padding: 20px;
+    }
+
     .resume-embed object {
         min-height: 500px;
+    }
+}
+
+/* Short landscape phones: fit more of the open menu on screen */
+@media (max-width: 768px) and (max-height: 520px) {
+    .nav-links {
+        padding-top: 64px;
+        gap: 14px;
+    }
+}
+
+/* Very narrow phones: drop the decorative icon so the date chip stays on one line */
+@media (max-width: 400px) {
+    .edu-card .card-icon {
+        display: none;
     }
 }
 
