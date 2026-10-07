@@ -162,15 +162,13 @@ function initHeroCanvas() {
 
     resize();
     window.addEventListener('resize', resize);
-    animId = requestAnimationFrame(draw);
+    if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
 
-    // Pause when not visible
+    // Pause when not visible; cancel first so a frame still pending (e.g. a
+    // page opened in a background tab) can't start a second loop
     document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            cancelAnimationFrame(animId);
-        } else {
-            animId = requestAnimationFrame(draw);
-        }
+        cancelAnimationFrame(animId);
+        if (!document.hidden && !prefersReducedMotion) animId = requestAnimationFrame(draw);
     });
 }
 
