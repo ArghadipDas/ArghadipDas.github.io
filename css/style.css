@@ -463,6 +463,131 @@ button {
     font-weight: 500;
 }
 
+/* ==================== NEWS ==================== */
+.news-list {
+    max-width: 900px;
+    margin-top: 48px;
+}
+
+.news-item {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.news-item:first-child {
+    padding-top: 0;
+}
+
+.news-date {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.news-text {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.news-text strong {
+    color: var(--text-heading);
+}
+
+.news-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.news-tag.award {
+    color: var(--accent-secondary);
+    background: rgba(240, 184, 102, 0.1);
+}
+
+.news-tag.career {
+    color: #c490f0;
+    background: rgba(196, 144, 240, 0.1);
+}
+
+.news-tag.journal {
+    color: #8ebbff;
+    background: rgba(142, 187, 255, 0.1);
+}
+
+.news-tag.preprint {
+    color: var(--text-secondary);
+    background: rgba(136, 136, 160, 0.12);
+}
+
+.news-text a {
+    border-bottom: 1px solid rgba(0, 212, 170, 0.3);
+}
+
+.news-text a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* ==================== EDUCATION ==================== */
+.edu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.edu-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.edu-card:hover {
+    border-color: rgba(0, 212, 170, 0.15);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.edu-degree {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+}
+
+.edu-school {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.edu-location {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin: 2px 0 16px;
+}
+
+.edu-card .timeline-bullets {
+    margin-bottom: 0;
+}
+
 /* ==================== EXPERIENCE TIMELINE ==================== */
 .timeline {
     position: relative;
@@ -1175,6 +1300,10 @@ button {
         grid-template-columns: 1fr;
     }
 
+    .edu-grid {
+        grid-template-columns: 1fr;
+    }
+
     .pub-entry {
         flex-direction: column;
     }
@@ -1226,6 +1355,11 @@ button {
 
     .awards-grid {
         grid-template-columns: 1fr;
+    }
+
+    .news-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
     }
 
     .resume-embed object {
