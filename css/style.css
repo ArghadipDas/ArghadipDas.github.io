@@ -1225,6 +1225,26 @@ button {
     }
 }
 
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .scroll-indicator {
+        animation: none;
+    }
+
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+
 /* Mobile overlay background */
 .nav-overlay {
     display: none;

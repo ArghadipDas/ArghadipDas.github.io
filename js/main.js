@@ -1,4 +1,6 @@
 /* ==================== DOM READY ==================== */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 document.addEventListener('DOMContentLoaded', () => {
     initNav();
     initScrollReveal();
@@ -18,7 +20,7 @@ function initNav() {
     // Scroll -> solid nav
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    }, { passive: true });
 
     // Hamburger toggle
     hamburger.addEventListener('click', () => {
@@ -90,6 +92,8 @@ function initHeroCanvas() {
         width = canvas.width = canvas.offsetWidth;
         height = canvas.height = canvas.offsetHeight;
         generateNodes();
+        // Static frame when motion is reduced (resizing clears the canvas)
+        if (prefersReducedMotion) draw(0);
     }
 
     function generateNodes() {
@@ -153,7 +157,7 @@ function initHeroCanvas() {
             ctx.fill();
         });
 
-        animId = requestAnimationFrame(draw);
+        if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
     }
 
     resize();
@@ -191,6 +195,10 @@ function initStatCounters() {
 
 function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
+    if (prefersReducedMotion) {
+        el.textContent = target;
+        return;
+    }
     const duration = 1500;
     const start = performance.now();
 
