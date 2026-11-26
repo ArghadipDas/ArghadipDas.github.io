@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <meta name="description" content="Arghadip Das is a PhD candidate in Electrical and Computer Engineering at Purdue University working on energy-efficient edge AI, neural processing units (NPUs), and hardware-software co-design. 25+ publications and 4 Intel patent families.">
     <meta name="keywords" content="Arghadip Das, Edge AI, NPU, Neural Processing Unit, heterogeneous NPU, Purdue University, PhD, ML accelerator, hardware-software co-design, approximate computing, GNN, SSM, computer architecture">
     <meta name="author" content="Arghadip Das">
-    <meta name="theme-color" content="#0a0a0f">
+    <meta name="theme-color" content="#f5f5f2">
     <link rel="canonical" href="https://arghadipdas.github.io/">
 
     <!-- Open Graph -->
@@ -43,12 +43,11 @@
     }
     </script>
 
-    <!-- Theme: apply a saved choice before first paint (dark is the default) -->
+    <!-- Theme: light is the default; apply a saved night-reading choice before first paint -->
     <script>
         (function () {
             try {
-                var t = localStorage.getItem('theme');
-                if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+                if (localStorage.getItem('ad-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
             } catch (e) {}
         })();
     </script>
@@ -56,23 +55,22 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-    <!-- Fonts -->
+    <!-- Fonts: Archivo (headings, labels) and Source Serif 4 (reading text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
-    <noscript><style>.reveal { opacity: 1; transform: none; } [data-open-search], .footer-hint { display: none !important; }</style></noscript>
+    <noscript><style>[data-open-search], .footer-hint { display: none !important; }</style></noscript>
 </head>
 <body>
     <a class="skip-link" href="#about">Skip to content</a>
-    <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
     <!-- ==================== NAVIGATION ==================== -->
     <nav id="navbar" aria-label="Primary">
         <div class="nav-container">
-            <a href="#hero" class="nav-logo" aria-label="Arghadip Das, back to top">&lt;AD/&gt;</a>
+            <a href="#hero" class="nav-logo" aria-label="Arghadip Das, back to top"><span aria-hidden="true">AD</span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#news">News</a></li>
@@ -91,7 +89,7 @@
                 <button type="button" class="icon-btn search-btn" data-open-search aria-label="Search this site" aria-keyshortcuts="/ Control+K Meta+K">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="search-label">Search</span><kbd>/</kbd>
                 </button>
-                <button type="button" class="icon-btn" id="themeToggle" aria-label="Switch to light theme" data-tip="Light theme">
+                <button type="button" class="icon-btn" id="themeToggle" aria-label="Switch to dark theme" data-tip="Dark theme">
                     <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
                 </button>
                 <button type="button" class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -103,59 +101,77 @@
         </div>
     </nav>
     <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
-    <nav class="section-rail on-hero" id="sectionRail" aria-label="Page sections"></nav>
 
     <main id="main">
     <!-- ==================== HERO ==================== -->
     <section id="hero" class="hero">
-        <canvas id="heroCanvas" aria-hidden="true"></canvas>
-        <div class="hero-content">
-            <span class="hero-badge">Purdue University | ECE</span>
-            <h1 class="hero-name">Arghadip <span class="accent">Das</span></h1>
-            <p class="hero-tagline">PhD Researcher | Edge AI | NPU Architect</p>
-            <p class="hero-description">Designing energy-efficient AI systems that bring complex neural workloads <br>from the cloud to the edge, at orders of magnitude lower power.</p>
-            <div class="hero-ctas">
-                <a href="#research" class="btn btn-primary">View Research</a>
-                <a href="materials/Arghadip_resume_1_page_2026_09_16.pdf" class="btn btn-secondary" download="Arghadip_Das_Resume.pdf" data-search-action="Download resume (PDF)" data-search-sub="One-page resume" data-keywords="cv">Download Resume</a>
-            </div>
-            <div class="hero-socials">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <p class="hero-badge">Purdue University | ECE</p>
+                <h1 class="hero-name">Arghadip Das</h1>
+                <p class="hero-tagline">PhD Researcher | Edge AI | NPU Architect</p>
+                <p class="hero-description">Designing energy-efficient AI systems that bring complex neural workloads from the cloud to the edge, at orders of magnitude lower power.</p>
+                <div class="hero-ctas">
+                    <a href="#research" class="btn btn-primary">View Research</a>
+                    <a href="materials/Arghadip_resume_1_page_2026_09_16.pdf" class="btn btn-secondary" download="Arghadip_Das_Resume.pdf" data-search-action="Download resume (PDF)" data-search-sub="One-page resume" data-keywords="cv">Download Resume</a>
+                </div>
+                <div class="hero-socials">
                 <a href="https://www.linkedin.com/in/arghadip-das/" target="_blank" rel="noopener" aria-label="LinkedIn" data-tip="LinkedIn" data-search-action="LinkedIn profile">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
                 <a href="https://github.com/arghadippurdue" target="_blank" rel="noopener" aria-label="GitHub" data-tip="GitHub" data-search-action="GitHub (arghadippurdue)">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                 </a>
                 <a href="https://scholar.google.com/citations?user=d3XoqSEAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" data-tip="Google Scholar" data-search-action="Google Scholar profile">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
                 </a>
                 <a href="https://orcid.org/0000-0001-6043-4685" target="_blank" rel="noopener" aria-label="ORCID" data-tip="ORCID" data-search-action="ORCID record">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
                 </a>
                 <a href="https://dblp.org/pid/291/4716.html" target="_blank" rel="noopener" aria-label="DBLP" data-tip="DBLP" data-search-action="DBLP bibliography">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="30" height="30" aria-hidden="true"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><path d="M7.5 7.5h9M7.5 11.5h9M7.5 15.5h5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><path d="M7.5 7.5h9M7.5 11.5h9M7.5 15.5h5"/></svg>
                 </a>
                 <a href="mailto:das169@purdue.edu" aria-label="Email" data-tip="Email" data-search-action="Email Arghadip" data-search-sub="das169@purdue.edu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="30" height="30" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+                </a>
+                </div>
+                <a class="hero-latest" href="#news">
+                    <span class="hero-latest-tag">New</span>
+                    <span>Three papers accepted at ICEdge 2026 and VLSID 2027</span>
                 </a>
             </div>
-            <a class="hero-latest" href="#news">
-                <span class="hero-latest-tag">New</span>
-                <span>Three papers accepted at ICEdge 2026 and VLSID 2027</span>
-            </a>
-        </div>
-        <div class="scroll-indicator" aria-hidden="true">
-            <span>Scroll</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+            <svg class="hero-art" viewBox="0 0 420 300" aria-hidden="true" focusable="false">
+                <g class="art-rays" fill="none" stroke-linecap="round">
+                    <path d="M20 196 A190 190 0 0 1 400 196" opacity="0.38"/>
+                    <path d="M50 196 A160 160 0 0 1 370 196" opacity="0.55"/>
+                    <path d="M80 196 A130 130 0 0 1 340 196" opacity="0.75"/>
+                    <path d="M110 196 A100 100 0 0 1 310 196"/>
+                </g>
+                <path class="art-sun" d="M144 196 A66 66 0 0 1 276 196 Z"/>
+                <line class="art-horizon" x1="0" y1="196.5" x2="420" y2="196.5"/>
+                <g class="art-water" fill="none" stroke-linecap="round">
+                    <path d="M-0 220 q17.5 -6 35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0" opacity="0.6"/>
+                    <path d="M-17.5 244 q17.5 -5 35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0" opacity="0.4"/>
+                    <path d="M-8 268 q17.5 -4 35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0 t35 0" opacity="0.24"/>
+                </g>
+                <g class="art-glint" stroke-linecap="round">
+                    <line x1="168" y1="231" x2="252" y2="231"/>
+                    <line x1="186" y1="255" x2="234" y2="255" opacity="0.7"/>
+                    <line x1="200" y1="279" x2="220" y2="279" opacity="0.45"/>
+                </g>
+            </svg>
         </div>
     </section>
 
     <!-- ==================== ABOUT ==================== -->
     <section id="about" class="section" data-label="About" data-keywords="bio profile advisor interests">
-        <div class="container">
-            <span class="section-number reveal">01</span>
-            <h2 class="section-title reveal">About Me</h2>
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">About Me</h2>
+            </header>
+            <div class="section-body">
             <div class="about-grid">
-                <aside class="about-side reveal" aria-label="Profile">
+                <aside class="about-side" aria-label="Profile">
                     <div class="photo-wrapper">
                         <picture>
                             <source srcset="materials/Arghadip_Formal_600.webp" type="image/webp">
@@ -179,10 +195,10 @@
                     </ul>
                 </aside>
                 <div class="about-text">
-                    <p class="reveal">I am a PhD candidate in <strong>Electrical and Computer Engineering</strong> at <strong>Purdue University</strong>, advised by Prof. Vijay Raghunathan. My research sits at the intersection of <em>machine learning</em> and <em>computer architecture</em>, with a focus on making AI systems dramatically more energy-efficient for deployment at the edge.</p>
-                    <p class="reveal">I have worked on enabling complex AI workloads, including graph neural networks, state space models, emerging language-model blocks, and multimodal cognitive systems, to run efficiently on resource-constrained neural processing units (NPUs). My work spans the full stack: from algorithmic approximations to hardware-software co-design, silicon-aware optimization, and the design of heterogeneous NPUs themselves.</p>
-                    <p class="reveal">During my PhD, I have interned twice at <strong>Intel</strong> (Client AI Research in 2024 and AI Solutions Engineering in 2026), work that led to four Intel patent families and a public Intel developer webinar. Prior to Purdue, I spent time at <strong>Texas Instruments</strong> (Design Verification &amp; Validation) and <strong>IIT Kharagpur</strong> (Research Intern), building a rare breadth across industry and academia.</p>
-                    <div class="reveal">
+                    <p>I am a PhD candidate in <strong>Electrical and Computer Engineering</strong> at <strong>Purdue University</strong>, advised by Prof. Vijay Raghunathan. My research sits at the intersection of <em>machine learning</em> and <em>computer architecture</em>, with a focus on making AI systems dramatically more energy-efficient for deployment at the edge.</p>
+                    <p>I have worked on enabling complex AI workloads, including graph neural networks, state space models, emerging language-model blocks, and multimodal cognitive systems, to run efficiently on resource-constrained neural processing units (NPUs). My work spans the full stack: from algorithmic approximations to hardware-software co-design, silicon-aware optimization, and the design of heterogeneous NPUs themselves.</p>
+                    <p>During my PhD, I have interned twice at <strong>Intel</strong> (Client AI Research in 2024 and AI Solutions Engineering in 2026), work that led to four Intel patent families and a public Intel developer webinar. Prior to Purdue, I spent time at <strong>Texas Instruments</strong> (Design Verification &amp; Validation) and <strong>IIT Kharagpur</strong> (Research Intern), building a rare breadth across industry and academia.</p>
+                    <div class="interests">
                         <h3 class="mini-heading">Research interests</h3>
                         <ul class="interest-chips">
                             <li>Energy-efficient edge AI</li>
@@ -193,7 +209,7 @@
                             <li>Multimodal AI systems</li>
                         </ul>
                     </div>
-                    <div class="about-actions reveal">
+                    <div class="about-actions">
                         <a href="#research" class="btn btn-secondary btn-small">See research highlights</a>
                         <a href="#publications" class="btn btn-secondary btn-small">Browse publications</a>
                         <a href="#talks" class="btn btn-secondary btn-small">Talks and presentations</a>
@@ -201,78 +217,77 @@
                 </div>
             </div>
             <div class="stats-row">
-                <a class="stat reveal" href="#publications">
-                    <span class="stat-number" data-target="25">25</span><span class="stat-suffix">+</span>
+                <a class="stat" href="#publications">
+                    <span class="stat-number">25</span><span class="stat-suffix">+</span>
                     <span class="stat-label">Publications</span>
                 </a>
-                <a class="stat reveal" href="#patents">
-                    <span class="stat-number" data-target="4">4</span>
+                <a class="stat" href="#patents">
+                    <span class="stat-number">4</span>
                     <span class="stat-label">Intel patent families</span>
                 </a>
-                <a class="stat reveal" href="https://scholar.google.com/citations?user=d3XoqSEAAAAJ" target="_blank" rel="noopener">
-                    <span class="stat-number" data-target="80">80</span><span class="stat-suffix">+</span>
+                <a class="stat" href="https://scholar.google.com/citations?user=d3XoqSEAAAAJ" target="_blank" rel="noopener">
+                    <span class="stat-number">80</span><span class="stat-suffix">+</span>
                     <span class="stat-label">Citations on Google Scholar</span>
                 </a>
-                <a class="stat reveal" href="#education">
-                    <span class="stat-number" data-target="4.0" data-decimals="1">4.0</span>
+                <a class="stat" href="#education">
+                    <span class="stat-number">4.0</span>
                     <span class="stat-label">GPA</span>
                 </a>
-                <a class="stat reveal" href="#awards">
-                    <span class="stat-number" data-target="5">5</span>
+                <a class="stat" href="#awards">
+                    <span class="stat-number">5</span>
                     <span class="stat-label">GATE EC 2020 AIR</span>
                 </a>
+            </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== NEWS ==================== -->
-    <section id="news" class="section section-alt" data-label="News" data-keywords="updates announcements latest">
-        <div class="container">
-            <span class="section-number reveal">02</span>
-            <h2 class="section-title reveal">News</h2>
+    <section id="news" class="section" data-label="News" data-keywords="updates announcements latest">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">News</h2>
+            </header>
+            <div class="section-body">
             <!-- To add news: copy an <li class="news-item"> block to the top of this list and move the oldest
-                 visible item into the "older updates" list below. Tag classes: (none), journal, award, career, book, preprint, lab. -->
+                 visible item into the "older updates" list below. Tag classes: (none), journal, award, career, book, preprint. -->
             <ul class="news-list">
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Oct 2026</span>
                     <p class="news-text"><span class="news-tag">Paper</span><strong>BIDENT</strong>, which maps each operator to the best of the CPU, GPU, and NPU, and <strong>SPAN</strong>, which brings classical signal processing to NPUs, were accepted as oral papers at <strong>VLSID 2027</strong>.</p>
                 </li>
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Oct 2026</span>
                     <p class="news-text"><span class="news-tag">Paper</span>Our co-first-author paper characterizing <strong>Gated DeltaNet and Liquid Foundation Models on client NPUs</strong> was accepted at <strong>ICEdge 2026</strong> as an invited special-session paper.</p>
                 </li>
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Oct 2026</span>
                     <p class="news-text"><span class="news-tag book">Book</span>Our chapter on mapping emerging generative and hybrid AI models onto NPUs was accepted for Springer&rsquo;s <em>Handbook of Embedded Machine Learning</em>.</p>
                 </li>
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Oct 2026</span>
                     <p class="news-text"><span class="news-tag journal">Journal</span><strong>StEdge</strong>, a low-power stochastic-computing accelerator for real-time edge detection, is published in <a href="https://www.mdpi.com/2813-6640/4/4/19" target="_blank" rel="noopener">MDPI Hardware</a>.</p>
                 </li>
-                <li class="news-item reveal">
-                    <span class="news-date">Oct 2026</span>
-                    <p class="news-text"><span class="news-tag award">Award</span>Our IJCNN 2026 paper on edge-ready 3D scene-language reasoning, presented by lab-mate Yatharth Agarwal, won <a href="https://www.linkedin.com/feed/update/urn:li:activity:7515822362458750976/" target="_blank" rel="noopener">first place for Systems Lightning Talk</a> at the SRC CogniSense 2026 Annual Review.</p>
-                </li>
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Sep 2026</span>
                     <p class="news-text"><span class="news-tag">Conference</span>Presented <strong>TESSERA</strong> (co-first author) at <a href="https://ieeexplore.ieee.org/document/11766206" target="_blank" rel="noopener">IEEE IISWC 2026</a> in Boulder, CO.</p>
                 </li>
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Sep 2026</span>
                     <p class="news-text"><span class="news-tag award">Award</span>Received the <a href="https://www.linkedin.com/feed/update/urn:li:activity:7511077238482575360/" target="_blank" rel="noopener"><strong>Best Lightning Talk Award</strong></a> at the 3rd Annual Workshop on Chips and AI, hosted by Purdue&rsquo;s Institute of CHIPS and AI, for COSMOS.</p>
                 </li>
-                <li class="news-item reveal">
+                <li class="news-item">
                     <span class="news-date">Sep 2026</span>
                     <p class="news-text"><span class="news-tag journal">Journal</span><strong>NEXUS</strong>, a unified framework for running GNNs and SSMs on commercial NPUs, is published in <a href="https://dl.acm.org/doi/10.1145/3846378" target="_blank" rel="noopener">ACM TECS</a>.</p>
                 </li>
-            </ul>
-            <details class="disclosure news-more">
-                <summary><span class="when-closed">Show 23 older updates</span><span class="when-open">Hide older updates</span></summary>
-                <ul class="news-list">
                 <li class="news-item">
                     <span class="news-date">Aug 2026</span>
                     <p class="news-text"><span class="news-tag journal">Journal</span><strong>DYNNER</strong>, compiler-level weight reordering that cuts dynamic power in DL accelerators, is published in <a href="https://ieeexplore.ieee.org/document/11664239" target="_blank" rel="noopener">IEEE TCASAI</a>.</p>
                 </li>
+            </ul>
+            <details class="disclosure news-more">
+                <summary><span class="when-closed">Show 21 older updates</span><span class="when-open">Hide older updates</span></summary>
+                <ul class="news-list">
                 <li class="news-item">
                     <span class="news-date">Aug 2026</span>
                     <p class="news-text"><span class="news-tag career">Internship</span>Completed a summer internship at <strong>Intel</strong> (AI Solutions Engineering), proposing the QPU, a quality-configurable NPU.</p>
@@ -292,10 +307,6 @@
                 <li class="news-item">
                     <span class="news-date">Jun 2026</span>
                     <p class="news-text"><span class="news-tag preprint">Preprint</span>Posted <strong>TESSERA</strong> (first posted as MOSAIC; heterogeneous NPU design-space exploration), <strong>BIDENT</strong> (operator-level CPU/GPU/NPU mapping), and <strong>KATANA</strong> (Kalman filters on NPUs) to arXiv.</p>
-                </li>
-                <li class="news-item">
-                    <span class="news-date">May 2026</span>
-                    <p class="news-text"><span class="news-tag lab">Lab news</span>My advisor, Prof. Vijay Raghunathan, received an <a href="https://engineering.purdue.edu/ECE/News/2026/purdue-ece-prof-vijay-raghunathan-receives-intel-2025-outstanding-researcher-award" target="_blank" rel="noopener">Intel 2025 Outstanding Researcher Award</a> for research on heterogeneous AI computing across CPUs, GPUs, and NPUs, including graph neural networks and Mamba-style state-space models, the focus of GraNNite, XAMBA, and NEXUS.</p>
                 </li>
                 <li class="news-item">
                     <span class="news-date">Mar 2026</span>
@@ -363,65 +374,61 @@
                 </li>
                 </ul>
             </details>
+            </div>
         </div>
     </section>
 
     <!-- ==================== EDUCATION ==================== -->
     <section id="education" class="section" data-label="Education" data-keywords="Purdue Jadavpur degree GPA coursework">
-        <div class="container">
-            <span class="section-number reveal">03</span>
-            <h2 class="section-title reveal">Education</h2>
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Education</h2>
+            </header>
+            <div class="section-body">
             <div class="edu-grid">
-                <div class="edu-card reveal">
-                    <div class="card-top">
-                        <span class="card-year">Jan 2022 &ndash; Spring 2027 (Expected)</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/><path d="M22 10v6"/></svg>
+                <article class="edu-card" data-org="purdue">
+                    <p class="card-year">Jan 2022 &ndash; Spring 2027 (Expected)</p>
+                    <div class="entry-main">
+                        <h3 class="edu-degree">M.S. &amp; Ph.D. in Electrical and Computer Engineering</h3>
+                        <p class="entry-org"><span class="edu-school">Purdue University</span><span class="edu-location">West Lafayette, IN, USA</span></p>
+                        <ul class="timeline-bullets">
+                            <li>GPA: <strong>4.0/4.0</strong></li>
+                            <li>Advisor: Prof. Vijay Raghunathan, Embedded Systems Lab</li>
+                            <li>Purdue ECE STAR Fellow</li>
+                            <li>Coursework: GPU Architecture, Deep Learning, Advanced VLSI Design, Computer Architecture, Operating Systems, SoC Design</li>
+                        </ul>
                     </div>
-                    <h3 class="edu-degree">M.S. &amp; Ph.D. in Electrical and Computer Engineering</h3>
-                    <span class="edu-school">Purdue University</span>
-                    <span class="edu-location">West Lafayette, IN, USA</span>
-                    <ul class="timeline-bullets">
-                        <li>GPA: <strong>4.0/4.0</strong></li>
-                        <li>Advisor: Prof. Vijay Raghunathan, Embedded Systems Lab</li>
-                        <li>Purdue ECE STAR Fellow</li>
-                        <li>Coursework: GPU Architecture, Deep Learning, Advanced VLSI Design, Computer Architecture, Operating Systems, SoC Design</li>
-                    </ul>
-                </div>
-                <div class="edu-card reveal">
-                    <div class="card-top">
-                        <span class="card-year">Aug 2016 &ndash; Aug 2020</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/><path d="M22 10v6"/></svg>
+                </article>
+                <article class="edu-card" data-org="ju">
+                    <p class="card-year">Aug 2016 &ndash; Aug 2020</p>
+                    <div class="entry-main">
+                        <h3 class="edu-degree">B.E. in Electronics and Telecommunication Engineering</h3>
+                        <p class="entry-org"><span class="edu-school">Jadavpur University</span><span class="edu-location">Kolkata, India</span></p>
+                        <ul class="timeline-bullets">
+                            <li>GPA: <strong>9.87/10</strong></li>
+                            <li>University Gold Medalist and Department Gold Medalist; Dr. B. C. Roy Memorial Silver Medal for the highest aggregate across all engineering disciplines</li>
+                            <li>Undergraduate research in the Advanced Digital and Embedded Systems Lab, advised by Prof. Mrinal Kanti Naskar</li>
+                        </ul>
                     </div>
-                    <h3 class="edu-degree">B.E. in Electronics and Telecommunication Engineering</h3>
-                    <span class="edu-school">Jadavpur University</span>
-                    <span class="edu-location">Kolkata, India</span>
-                    <ul class="timeline-bullets">
-                        <li>GPA: <strong>9.87/10</strong></li>
-                        <li>University Gold Medalist and Department Gold Medalist; Dr. B. C. Roy Memorial Silver Medal for the highest aggregate across all engineering disciplines</li>
-                        <li>Undergraduate research in the Advanced Digital and Embedded Systems Lab, advised by Prof. Mrinal Kanti Naskar</li>
-                    </ul>
-                </div>
+                </article>
+            </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== EXPERIENCE ==================== -->
-    <section id="experience" class="section section-alt" data-label="Experience" data-keywords="Intel Texas Instruments TI internship work jobs">
-        <div class="container">
-            <span class="section-number reveal">04</span>
-            <h2 class="section-title reveal">Experience</h2>
+    <section id="experience" class="section" data-label="Experience" data-keywords="Intel Texas Instruments TI internship work jobs">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Experience</h2>
+            </header>
+            <div class="section-body">
             <div class="timeline">
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                <article class="timeline-entry" data-org="intel">
+                    <p class="timeline-date">May 2026 &ndash; Aug 2026</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>AI Solutions Engineering PhD Intern</h3>
-                                <span class="timeline-company">Intel Corporation</span>
-                                <span class="timeline-location">Santa Clara, CA</span>
-                            </div>
-                            <span class="timeline-date">May 2026 &ndash; Aug 2026</span>
-                        </div>
+                        <h3>AI Solutions Engineering PhD Intern</h3>
+                        <p class="entry-org"><span class="timeline-company">Intel Corporation</span><span class="timeline-location">Santa Clara, CA</span></p>
                         <ul class="timeline-bullets">
                             <li>Proposed the <strong>QPU (Quality-Configurable NPU)</strong>, instrumenting the entire accelerator datapath with runtime-tunable approximation knobs to accommodate diverse model families (CNNs, transformers, MoE, and SSMs).</li>
                             <li>Developed a joint tuning framework that exploits workload error resilience on the fly, recovering unclaimed energy savings to achieve <strong>over 10% energy savings within 1% of baseline quality</strong> from INT4 to FP16.</li>
@@ -434,18 +441,12 @@
                             <span class="tag">INT4&ndash;FP16</span>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                </article>
+                <article class="timeline-entry" data-org="intel">
+                    <p class="timeline-date">May 2024 &ndash; Dec 2024</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>Client AI Research Scientist Intern</h3>
-                                <span class="timeline-company">Intel Corporation</span>
-                                <span class="timeline-location">Santa Clara, CA</span>
-                            </div>
-                            <span class="timeline-date">May 2024 &ndash; Dec 2024</span>
-                        </div>
+                        <h3>Client AI Research Scientist Intern</h3>
+                        <p class="entry-org"><span class="timeline-company">Intel Corporation</span><span class="timeline-location">Santa Clara, CA</span></p>
                         <ul class="timeline-bullets">
                             <li>Developed end-to-end deployment flows for graph-based and sequence-based neural networks on Intel NPUs, resolving unsupported operators and memory-layout issues for significant latency reductions.</li>
                             <li>Analyzed execution traces to pinpoint compute imbalance and on-chip memory stalls, collaborating with compiler and architecture teams to optimize operator scheduling.</li>
@@ -461,18 +462,12 @@
                             <span class="tag">Patents</span>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                </article>
+                <article class="timeline-entry" data-org="purdue">
+                    <p class="timeline-date">Jan 2022 &ndash; Present</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>Graduate Research Assistant</h3>
-                                <span class="timeline-company">Purdue University, Embedded Systems Lab</span>
-                                <span class="timeline-location">West Lafayette, IN</span>
-                            </div>
-                            <span class="timeline-date">Jan 2022 &ndash; Present</span>
-                        </div>
+                        <h3>Graduate Research Assistant</h3>
+                        <p class="entry-org"><span class="timeline-company">Purdue University, Embedded Systems Lab</span><span class="timeline-location">West Lafayette, IN</span></p>
                         <ul class="timeline-bullets">
                             <li>Designed adaptive runtime systems for edge devices that adjust sensing rate, data transmission, memory use, and model complexity based on environmental conditions, improving energy efficiency while maintaining accuracy.</li>
                             <li>Developed coordinated approximation techniques across multiple devices in distributed inference, enabling reduced-cost computation while maintaining system-level accuracy.</li>
@@ -488,18 +483,12 @@
                             <span class="tag">Heterogeneous NPUs</span>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                </article>
+                <article class="timeline-entry" data-org="ti">
+                    <p class="timeline-date">Aug 2020 &ndash; Dec 2021</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>Validation / Test Engineer</h3>
-                                <span class="timeline-company">Texas Instruments</span>
-                                <span class="timeline-location">Bangalore, India</span>
-                            </div>
-                            <span class="timeline-date">Aug 2020 &ndash; Dec 2021</span>
-                        </div>
+                        <h3>Validation / Test Engineer</h3>
+                        <p class="entry-org"><span class="timeline-company">Texas Instruments</span><span class="timeline-location">Bangalore, India</span></p>
                         <ul class="timeline-bullets">
                             <li>Led a 4-person team validating and characterizing TI&rsquo;s DP83TC812-Q1 automotive 100BASE-T1 Ethernet PHY, developing structured test procedures in LabVIEW and TestStand and driving failure-mode fixes to enable on-time production release.</li>
                             <li>Reduced device characterization time by <strong>12x</strong> by designing multi-site test boards and automating measurement routines for industrial Ethernet transceivers.</li>
@@ -511,18 +500,12 @@
                             <span class="tag">Ethernet PHY</span>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                </article>
+                <article class="timeline-entry" data-org="ju">
+                    <p class="timeline-date">Aug 2018 &ndash; Jul 2020</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>Undergraduate Research Assistant</h3>
-                                <span class="timeline-company">Jadavpur University, Advanced Digital and Embedded Systems Lab</span>
-                                <span class="timeline-location">Kolkata, India</span>
-                            </div>
-                            <span class="timeline-date">Aug 2018 &ndash; Jul 2020</span>
-                        </div>
+                        <h3>Undergraduate Research Assistant</h3>
+                        <p class="entry-org"><span class="timeline-company">Jadavpur University, Advanced Digital and Embedded Systems Lab</span><span class="timeline-location">Kolkata, India</span></p>
                         <ul class="timeline-bullets">
                             <li>Developed multiplier-less hardware architectures for hidden-periodicity detection with Ramanujan sums, leading to papers at IEEE ASPCON 2020, VLSID 2021, and IEEE Transactions on Computers (2023).</li>
                             <li>Built and evaluated real-time FPGA prototypes to analyze area, delay, and accuracy trade-offs for embedded signal processing.</li>
@@ -534,18 +517,12 @@
                             <span class="tag">Approximate Computing</span>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                </article>
+                <article class="timeline-entry" data-org="ti">
+                    <p class="timeline-date">May 2019 &ndash; Jul 2019</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>Design Verification Intern</h3>
-                                <span class="timeline-company">Texas Instruments</span>
-                                <span class="timeline-location">Bangalore, India</span>
-                            </div>
-                            <span class="timeline-date">May 2019 &ndash; Jul 2019</span>
-                        </div>
+                        <h3>Design Verification Intern</h3>
+                        <p class="entry-org"><span class="timeline-company">Texas Instruments</span><span class="timeline-location">Bangalore, India</span></p>
                         <ul class="timeline-bullets">
                             <li>Consolidated multiple verification environments into a unified framework, standardizing Bus Functional Models and regression setups across Ethernet products and halving DV environment development time.</li>
                             <li>Learned Specman-e verification language within one week and created reusable verification components integrated into the production DV flow.</li>
@@ -556,18 +533,12 @@
                             <span class="tag">Specman-e</span>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-entry reveal">
-                    <div class="timeline-dot"></div>
+                </article>
+                <article class="timeline-entry" data-org="iit">
+                    <p class="timeline-date">May 2018 &ndash; Jul 2018</p>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <h3>Research Intern</h3>
-                                <span class="timeline-company">IIT Kharagpur, Dept. of CSE</span>
-                                <span class="timeline-location">Kharagpur, India</span>
-                            </div>
-                            <span class="timeline-date">May 2018 &ndash; Jul 2018</span>
-                        </div>
+                        <h3>Research Intern</h3>
+                        <p class="entry-org"><span class="timeline-company">IIT Kharagpur, Dept. of CSE</span><span class="timeline-location">Kharagpur, India</span></p>
                         <ul class="timeline-bullets">
                             <li>Implemented an FPGA-based network intrusion detection system for real-time malicious packet classification.</li>
                             <li>Designed dispatcher logic and pattern-matching modules in Verilog on a NetFPGA platform, achieving higher processing throughput for packet-level inspection.</li>
@@ -579,18 +550,21 @@
                             <span class="tag">Security</span>
                         </div>
                     </div>
-                </div>
+                </article>
+            </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== RESEARCH ==================== -->
     <section id="research" class="section" data-label="Research" data-keywords="projects highlights NPU edge AI impact">
-        <div class="container">
-            <span class="section-number reveal">05</span>
-            <h2 class="section-title reveal">Research Highlights</h2>
-            <p class="section-subtitle reveal">Building the bridge between AI algorithms and efficient hardware realization.</p>
-            <div class="filter-bar research-themes reveal" id="researchFilters" role="group" aria-label="Filter projects by theme">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Research Highlights</h2>
+            </header>
+            <div class="section-body">
+            <p class="section-subtitle">Building the bridge between AI algorithms and efficient hardware realization.</p>
+            <div class="filter-bar research-themes" id="researchFilters" role="group" aria-label="Filter projects by theme">
                 <button type="button" class="chip" data-filter="all" aria-pressed="true">All <span class="chip-count"></span></button>
                 <button type="button" class="chip" data-filter="npu" aria-pressed="false">Emerging AI on NPUs <span class="chip-count"></span></button>
                 <button type="button" class="chip" data-filter="arch" aria-pressed="false">NPU &amp; accelerator design <span class="chip-count"></span></button>
@@ -599,251 +573,205 @@
             </div>
             <!-- data-themes on each card drives the filter above: npu | arch | systems | signal (space-separated for several). -->
             <div class="research-grid" id="researchGrid">
-                <article class="research-card reveal" id="proj-nexus" data-themes="npu">
-                    <div class="card-top">
-                        <span class="card-year">2026</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><circle cx="12" cy="12" r="2.5"/><line x1="12" y1="2" x2="12" y2="9.5"/><line x1="3.34" y1="17" x2="9.83" y2="13.25"/><line x1="20.66" y1="17" x2="14.17" y2="13.25"/></svg>
-                    </div>
+                <article class="research-card" id="proj-nexus" data-themes="npu">
+                    <p class="card-meta"><span class="card-year">2026</span><span class="card-venue">ACM TECS 2026</span></p>
                     <h3 class="card-title">NEXUS</h3>
                     <p class="card-subtitle">GNNs &amp; SSMs on Commercial NPUs</p>
                     <p class="card-desc">A unified enable&ndash;optimize&ndash;trade-off methodology for running emerging AI workloads on off-the-shelf NPUs, building on GraNNite and XAMBA.</p>
-                    <div class="card-metrics">
-                        <span>Up to <strong>10.8x</strong> GNN speedup vs. CPU</span>
-                        <span>Up to <strong>3.8x</strong> lower SSM latency</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li>Up to <strong>10.8x</strong> GNN speedup vs. CPU</li>
+                        <li>Up to <strong>3.8x</strong> lower SSM latency</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://github.com/arghadippurdue/NEXUS" target="_blank" rel="noopener">GitHub</a>
                         <a href="https://dl.acm.org/doi/10.1145/3846378" target="_blank" rel="noopener">Paper</a>
-                        <span class="card-venue">ACM TECS 2026</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-tessera" data-themes="arch">
-                    <div class="card-top">
-                        <span class="card-year">2026</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="5" rx="1"/><rect x="13" y="10" width="8" height="11" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>
-                    </div>
+                <article class="research-card" id="proj-tessera" data-themes="arch">
+                    <p class="card-meta"><span class="card-year">2026</span><span class="card-venue">IEEE IISWC 2026</span></p>
                     <h3 class="card-title">TESSERA</h3>
                     <p class="card-subtitle">Design-Space Exploration for Heterogeneous NPUs</p>
                     <p class="card-desc">Workload-driven simulator and DSE framework that jointly explores tile mix, MAC arrays, precision, dataflow, and special-function units for heterogeneous NPUs. Co-first author.</p>
-                    <div class="card-metrics">
-                        <span><strong>46.9%</strong> average energy savings vs. the best homogeneous NPU of equal area, across 20 workloads</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li><strong>46.9%</strong> average energy savings vs. the best homogeneous NPU of equal area, across 20 workloads</li>
+                    </ul>
                     <blockquote class="card-quote">&ldquo;the first framework to comprehensively target the design of flexible multi-engine DL accelerators&rdquo;<cite>Researchers at Chalmers University of Technology, on TESSERA (first posted as MOSAIC), in <a href="https://arxiv.org/abs/2609.37399" target="_blank" rel="noopener">MEDEM</a>, arXiv 2026</cite></blockquote>
                     <div class="card-links">
                         <a href="https://ieeexplore.ieee.org/document/11766206" target="_blank" rel="noopener">Paper</a>
                         <a href="https://arxiv.org/abs/2606.05362" target="_blank" rel="noopener">arXiv</a>
-                        <span class="card-venue">IEEE IISWC 2026</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-emerging-lm" data-themes="npu">
-                    <div class="card-top">
-                        <span class="card-year">2026</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 9h10M7 12.5h6"/></svg>
-                    </div>
+                <article class="research-card" id="proj-emerging-lm" data-themes="npu">
+                    <p class="card-meta"><span class="card-year">2026</span><span class="card-venue">ICEdge 2026</span></p>
                     <h3 class="card-title">Emerging LMs on NPUs</h3>
                     <p class="card-subtitle">Gated DeltaNet &amp; Liquid Foundation Models on Client NPUs</p>
                     <p class="card-desc">To our knowledge, the first characterization of these attention-replacing language-model blocks on a client NPU. Arithmetic intensity, not FLOP count, predicts NPU cost. Co-first author.</p>
-                    <div class="card-metrics">
-                        <span><strong>170x</strong> fewer MACs per token, yet only <strong>4&ndash;6x</strong> faster (LFM vs. GDN)</span>
-                        <span>Bounding the state <strong>halves</strong> decode energy</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li><strong>170x</strong> fewer MACs per token, yet only <strong>4&ndash;6x</strong> faster (LFM vs. GDN)</li>
+                        <li>Bounding the state <strong>halves</strong> decode energy</li>
+                    </ul>
                     <div class="card-links">
 
                         <span class="badge-review">To appear</span>
-                        <span class="card-venue">ICEdge 2026</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-dynner" data-themes="arch">
-                    <div class="card-top">
-                        <span class="card-year">2026</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
-                    </div>
+                <article class="research-card" id="proj-dynner" data-themes="arch">
+                    <p class="card-meta"><span class="card-year">2026</span><span class="card-venue">IEEE TCASAI 2026</span></p>
                     <h3 class="card-title">DYNNER</h3>
                     <p class="card-subtitle">Dynamic Power Reduction in DL Accelerators</p>
                     <p class="card-desc">Compiler-level weight reordering that minimizes bit-level switching in processing elements: the first approach to cut switching-induced active power with no hardware changes and no accuracy loss.</p>
-                    <div class="card-metrics">
-                        <span>Up to <strong>50%</strong> less layer-level switching</span>
-                        <span><strong>6%</strong> lower total active power</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li>Up to <strong>50%</strong> less layer-level switching</li>
+                        <li><strong>6%</strong> lower total active power</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://ieeexplore.ieee.org/document/11664239" target="_blank" rel="noopener">Paper</a>
                         <a href="https://patents.google.com/patent/US20260004151A1/en" target="_blank" rel="noopener">Patent</a>
-                        <span class="card-venue">IEEE TCASAI 2026</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-cosmos" data-themes="systems">
-                    <div class="card-top">
-                        <span class="card-year">2026</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                    </div>
+                <article class="research-card" id="proj-cosmos" data-themes="systems">
+                    <p class="card-meta"><span class="card-year">2026</span><span class="card-venue">ISLPED 2026</span></p>
                     <h3 class="card-title">COSMOS</h3>
                     <p class="card-subtitle">Energy-Efficient Multimodal Cognitive Systems</p>
                     <p class="card-desc">Closed-loop runtime framework that uses semantic context and temporal stability to govern modality activation, inference rate, and approximation on multimodal edge nodes.</p>
-                    <div class="card-metrics">
-                        <span><strong>7.73x</strong> longer lifetime</span>
-                        <span><strong>&lt;5%</strong> accuracy loss</span>
-                    </div>
-                    <span class="card-award">Best Lightning Talk Award, 2026</span>
+                    <ul class="card-metrics">
+                        <li><strong>7.73x</strong> longer lifetime</li>
+                        <li><strong>&lt;5%</strong> accuracy loss</li>
+                    </ul>
+                    <p class="card-award">Best Lightning Talk Award, 2026</p>
                     <div class="card-links">
                         <a href="https://dl.acm.org/doi/10.1145/3816440.3818581" target="_blank" rel="noopener">Paper</a>
-                        <span class="card-venue">ISLPED 2026</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-grannite" data-themes="npu">
-                    <div class="card-top">
-                        <span class="card-year">2025</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><line x1="7.5" y1="7.5" x2="10.5" y2="16.5"/><line x1="16.5" y1="7.5" x2="13.5" y2="16.5"/><line x1="8" y1="6" x2="16" y2="6"/></svg>
-                    </div>
+                <article class="research-card" id="proj-grannite" data-themes="npu">
+                    <p class="card-meta"><span class="card-year">2025</span><span class="card-venue">IJCNN 2025</span></p>
                     <h3 class="card-title">GraNNite</h3>
                     <p class="card-subtitle">Graph Neural Networks on NPUs</p>
                     <p class="card-desc">End-to-end deployment flow that enables, optimizes, and approximates GNN execution on resource-constrained NPUs with hardware-aware operator mappings. Intel featured it in a public developer webinar.</p>
-                    <div class="card-metrics">
-                        <span><strong>2.6&ndash;7.6x</strong> faster than default NPU mappings</span>
-                        <span>Up to <strong>8.6x</strong> energy gain vs. CPU/GPU</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li><strong>2.6&ndash;7.6x</strong> faster than default NPU mappings</li>
+                        <li>Up to <strong>8.6x</strong> energy gain vs. CPU/GPU</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://github.com/arghadippurdue/GraNNite" target="_blank" rel="noopener">GitHub</a>
                         <a href="https://ieeexplore.ieee.org/document/11227197" target="_blank" rel="noopener">Paper</a>
                         <a href="https://www.intel.com/content/www/us/en/developer/videos/enabling-high-performance-execution-of-gnn-on-npu.html" target="_blank" rel="noopener">Webinar</a>
-                        <span class="card-venue">IJCNN 2025</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-xamba" data-themes="npu">
-                    <div class="card-top">
-                        <span class="card-year">2025</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
-                    </div>
+                <article class="research-card" id="proj-xamba" data-themes="npu">
+                    <p class="card-meta"><span class="card-year">2025</span><span class="card-venue">ICLR Workshop 2025</span></p>
                     <h3 class="card-title">XAMBA</h3>
                     <p class="card-subtitle">State Space Models on NPUs</p>
                     <p class="card-desc">Enables efficient SSM execution on NPUs by reformulating sequential cumulative sums, reductions, and activations into matrix-based, hardware-friendly primitives (CumBA, ReduBA, ActiBA).</p>
-                    <div class="card-metrics">
-                        <span>Up to <strong>4.8x</strong> speedup on an Intel Core Ultra Series 2 AI PC</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li>Up to <strong>4.8x</strong> speedup on an Intel Core Ultra Series 2 AI PC</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://github.com/arghadippurdue/XAMBA" target="_blank" rel="noopener">GitHub</a>
                         <a href="https://arxiv.org/abs/2502.06924" target="_blank" rel="noopener">Paper</a>
-                        <span class="card-venue">ICLR Workshop 2025</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-eco" data-themes="systems">
-                    <div class="card-top">
-                        <span class="card-year">2025</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
-                    </div>
+                <article class="research-card" id="proj-eco" data-themes="systems">
+                    <p class="card-meta"><span class="card-year">2025</span><span class="card-venue">ISLPED 2025</span></p>
                     <h3 class="card-title">ECO</h3>
                     <p class="card-subtitle">Context-Aware Multimodal AI on NPUs</p>
                     <p class="card-desc">Runtime-tunable, NPU-aware knobs (approximate interpolation, quantization, and model scaling) that adapt RGB and LiDAR segmentation to energy availability and sensor reliability on an Intel Core Ultra NPU.</p>
-                    <div class="card-metrics">
-                        <span>Up to <strong>4.9x</strong> performance vs. CPU</span>
-                        <span><strong>11.3x</strong> energy efficiency vs. CPU</span>
-                    </div>
-                    <span class="card-award">Best Poster, SRC CoCoSys 2025</span>
+                    <ul class="card-metrics">
+                        <li>Up to <strong>4.9x</strong> performance vs. CPU</li>
+                        <li><strong>11.3x</strong> energy efficiency vs. CPU</li>
+                    </ul>
+                    <p class="card-award">Best Poster, SRC CoCoSys 2025</p>
                     <div class="card-links">
                         <a href="https://github.com/arghadippurdue/ECO_Demo" target="_blank" rel="noopener">GitHub</a>
                         <a href="https://ieeexplore.ieee.org/document/11261815" target="_blank" rel="noopener">Paper</a>
                         <a href="https://www.youtube.com/watch?v=9wRXog4LqbY" target="_blank" rel="noopener">Video</a>
-                        <span class="card-venue">ISLPED 2025</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-prism" data-themes="systems">
-                    <div class="card-top">
-                        <span class="card-year">2025</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    </div>
+                <article class="research-card" id="proj-prism" data-themes="systems">
+                    <p class="card-meta"><span class="card-year">2025</span><span class="card-venue">COINS 2025</span></p>
                     <h3 class="card-title">PRISM</h3>
                     <p class="card-subtitle">Processing-In-Sensor+Memory for Battery-Free IoT</p>
                     <p class="card-desc">Energy-efficient AIoT architecture combining processing-in-sensor and processing-in-memory to run binary neural networks on intermittently powered, battery-free devices.</p>
-                    <div class="card-metrics">
-                        <span><strong>110.7x</strong> forward progress vs. MCU-only</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li><strong>110.7x</strong> forward progress vs. MCU-only</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://ieeexplore.ieee.org/document/11125788" target="_blank" rel="noopener">Paper</a>
-                        <span class="card-venue">COINS 2025</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-drax" data-themes="systems">
-                    <div class="card-top">
-                        <span class="card-year">2024</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><rect x="2" y="3" width="7" height="7" rx="1"/><rect x="15" y="3" width="7" height="7" rx="1"/><rect x="8.5" y="14" width="7" height="7" rx="1"/><line x1="5.5" y1="10" x2="12" y2="14"/><line x1="18.5" y1="10" x2="12" y2="14"/></svg>
-                    </div>
+                <article class="research-card" id="proj-drax" data-themes="systems">
+                    <p class="card-meta"><span class="card-year">2024</span><span class="card-venue">IEEE IoTJ 2024</span></p>
                     <h3 class="card-title">DRAX</h3>
                     <p class="card-subtitle">Collaborative Inference with Multi-System Approximations</p>
                     <p class="card-desc">Energy-efficient collaborative inference framework enabling coordinated approximation across distributed edge devices. Its distributed approximate systems idea is discussed in a 2025 ACM Computing Surveys survey.</p>
-                    <div class="card-metrics">
-                        <span><strong>2.6&ndash;8x</strong> energy savings</span>
-                        <span><strong>&lt;1%</strong> quality loss</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li><strong>2.6&ndash;8x</strong> energy savings</li>
+                        <li><strong>&lt;1%</strong> quality loss</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://github.com/arghadippurdue/DRAX" target="_blank" rel="noopener">GitHub</a>
                         <a href="https://ieeexplore.ieee.org/document/10433860" target="_blank" rel="noopener">Paper</a>
-                        <span class="card-venue">IEEE IoTJ 2024</span>
                     </div>
                 </article>
 
-                <article class="research-card reveal" id="proj-hipedap" data-themes="signal">
-                    <div class="card-top">
-                        <span class="card-year">2020&ndash;2023</span>
-                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28" aria-hidden="true"><path d="M2 12c1.5-5 3.5-5 5 0s3.5 5 5 0 3.5-5 5 0 3.5 5 5 0"/></svg>
-                    </div>
+                <article class="research-card" id="proj-hipedap" data-themes="signal">
+                    <p class="card-meta"><span class="card-year">2020&ndash;2023</span><span class="card-venue">IEEE TC 2023</span></p>
                     <h3 class="card-title">HIPER &amp; HIPEDAP</h3>
                     <p class="card-subtitle">Hardware for Hidden-Periodicity Detection</p>
                     <p class="card-desc">Accelerators for Ramanujan filter banks, which find hidden periodic patterns in signals such as DNA and EEG, from a multiplier-less design to approximate microarchitectures. Undergraduate work.</p>
-                    <div class="card-metrics">
-                        <span><strong>4.7x</strong> smaller, <strong>8.2x</strong> faster clock, <strong>1.7x</strong> lower power (45 nm)</span>
-                        <span>Up to <strong>32.2%</strong> more power savings with approximation</span>
-                    </div>
+                    <ul class="card-metrics">
+                        <li><strong>4.7x</strong> smaller, <strong>8.2x</strong> faster clock, <strong>1.7x</strong> lower power (45 nm)</li>
+                        <li>Up to <strong>32.2%</strong> more power savings with approximation</li>
+                    </ul>
                     <div class="card-links">
                         <a href="https://ieeexplore.ieee.org/document/10114978" target="_blank" rel="noopener">TC paper</a>
                         <a href="https://ieeexplore.ieee.org/document/9407448" target="_blank" rel="noopener">VLSID paper</a>
-                        <span class="card-venue">IEEE TC 2023</span>
                     </div>
                 </article>
             </div>
 
             <div class="impact" id="impact">
-                <h3 class="subsection-title reveal">Impact beyond the papers</h3>
+                <h3 class="subsection-title">Impact beyond the papers</h3>
                 <div class="impact-grid">
-                    <div class="impact-item reveal">
+                    <div class="impact-item">
                         <h4>Intel developer webinar</h4>
                         <p>Intel presented GraNNite to developers in a public webinar on running graph neural networks on Intel NPUs.</p>
                         <div class="impact-links"><a href="https://www.intel.com/content/www/us/en/developer/videos/enabling-high-performance-execution-of-gnn-on-npu.html" target="_blank" rel="noopener">Webinar page</a></div>
                     </div>
-                    <div class="impact-item reveal">
-                        <h4>Intel Outstanding Researcher Award</h4>
-                        <p>Intel&rsquo;s 2025 award to my advisor recognizes our lab&rsquo;s heterogeneous AI computing research, including GNNs and state-space models on NPUs.</p>
-                        <div class="impact-links"><a href="https://engineering.purdue.edu/ECE/News/2026/purdue-ece-prof-vijay-raghunathan-receives-intel-2025-outstanding-researcher-award" target="_blank" rel="noopener">Purdue ECE News</a><a href="https://www.intel.com/content/www/us/en/newsroom/news/corporate/intels-2025-outstanding-researcher-awards-honor-10-academic-innovators.html" target="_blank" rel="noopener">Intel Newsroom</a></div>
-                    </div>
-                    <div class="impact-item reveal">
+                    <div class="impact-item">
                         <h4>4 Intel patent families</h4>
                         <p>Nine published applications across the US, Europe, China, and WIPO, from GNN execution to power-aware weight reordering.</p>
                         <div class="impact-links"><a href="#patents">See the patents</a></div>
                     </div>
-                    <div class="impact-item reveal">
+                    <div class="impact-item">
                         <h4>Cited across the field</h4>
                         <p>Our papers are cited in ACM Computing Surveys, IEEE Transactions on Computers, IEEE Transactions on Communications, and IEEE HiPC.</p>
                         <div class="impact-links"><a href="https://scholar.google.com/citations?user=d3XoqSEAAAAJ" target="_blank" rel="noopener">Google Scholar</a><a href="https://doi.org/10.1145/3711683" target="_blank" rel="noopener">ACM CSUR survey</a></div>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
     <!-- ==================== PUBLICATIONS ==================== -->
-    <section id="publications" class="section section-alt" data-label="Publications" data-keywords="papers journals conferences patents bibliography">
-        <div class="container">
-            <span class="section-number reveal">06</span>
-            <h2 class="section-title reveal">Publications</h2>
-            <p class="section-subtitle reveal">Journal and conference papers, workshop and demo papers, a book chapter, and patents. Accepted papers appear under &ldquo;To appear&rdquo;.</p>
-            <div class="pub-toolbar reveal">
+    <section id="publications" class="section" data-label="Publications" data-keywords="papers journals conferences patents bibliography">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Publications</h2>
+            </header>
+            <div class="section-body">
+            <p class="section-subtitle">Journal and conference papers, workshop and demo papers, a book chapter, and patents. Accepted papers appear under &ldquo;To appear&rdquo;.</p>
+            <div class="pub-toolbar">
                 <div class="pub-search-row">
                     <div class="search-field">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -871,8 +799,8 @@
                  data-first: "true" for first or co-first author. Numbers and filter counts update automatically. -->
             <div class="pub-list" id="pubList">
             <div class="pub-group" data-group="upcoming">
-                <h3 class="pub-year reveal">To appear</h3>
-                <article class="pub-entry reveal" id="pub-icedge26" data-type="conference" data-first="true" data-keywords="GDN LFM LFM2 linear attention language model LLM decode energy client NPU Intel Core Ultra arithmetic intensity">
+                <h3 class="pub-year">To appear</h3>
+                <article class="pub-entry" id="pub-icedge26" data-type="conference" data-first="true" data-keywords="GDN LFM LFM2 linear attention language model LLM decode energy client NPU Intel Core Ultra arithmetic intensity">
                     <span class="pub-num" aria-hidden="true">[27]</span>
                     <div class="pub-info">
                         <p class="pub-title">Emerging Language Models at the Edge: Characterizing Gated DeltaNet and Liquid Foundation Models on Client NPUs</p>
@@ -886,7 +814,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-handbook" data-type="chapter" data-first="true" data-keywords="book handbook chapter NPU emerging generative hybrid models SSM attention">
+                <article class="pub-entry" id="pub-handbook" data-type="chapter" data-first="true" data-keywords="book handbook chapter NPU emerging generative hybrid models SSM attention">
                     <span class="pub-num" aria-hidden="true">[26]</span>
                     <div class="pub-info">
                         <p class="pub-title">Powering the Next Era of Embedded ML: Energy-Efficient Mapping and Optimization of Emerging Generative and Hybrid AI Models on Neural Processing Units</p>
@@ -898,7 +826,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-bident" data-type="conference" data-first="false" data-keywords="heterogeneous CPU GPU NPU operator mapping concurrent inference edge SoC">
+                <article class="pub-entry" id="pub-bident" data-type="conference" data-first="false" data-keywords="heterogeneous CPU GPU NPU operator mapping concurrent inference edge SoC">
                     <span class="pub-num" aria-hidden="true">[25]</span>
                     <div class="pub-info">
                         <p class="pub-title">BIDENT: Heterogeneous Operator-level Mapping for Efficient Edge Inference</p>
@@ -914,7 +842,7 @@
                         <a href="https://arxiv.org/abs/2606.05271" target="_blank" rel="noopener">arXiv</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-span" data-type="conference" data-first="false" data-keywords="signal processing DSP NPU real-time low-power">
+                <article class="pub-entry" id="pub-span" data-type="conference" data-first="false" data-keywords="signal processing DSP NPU real-time low-power">
                     <span class="pub-num" aria-hidden="true">[24]</span>
                     <div class="pub-info">
                         <p class="pub-title">SPAN: Real-Time, Low-Power Signal Processing on NPUs</p>
@@ -929,8 +857,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="2026">
-                <h3 class="pub-year reveal">2026</h3>
-                <article class="pub-entry reveal" id="pub-nexus" data-type="journal" data-first="true" data-keywords="GNN SSM Mamba graph neural network state space model NPU GraNNite XAMBA">
+                <h3 class="pub-year">2026</h3>
+                <article class="pub-entry" id="pub-nexus" data-type="journal" data-first="true" data-keywords="GNN SSM Mamba graph neural network state space model NPU GraNNite XAMBA">
                     <span class="pub-num" aria-hidden="true">[23]</span>
                     <div class="pub-info">
                         <p class="pub-title">NEXUS: Speeding Up the Next Wave of AI Workloads &mdash; GNN and SSM Optimization on NPUs</p>
@@ -945,7 +873,7 @@
                         <a href="https://github.com/arghadippurdue/NEXUS" target="_blank" rel="noopener">Code</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-stedge" data-type="journal" data-first="false" data-keywords="stochastic computing edge detection accelerator image processing">
+                <article class="pub-entry" id="pub-stedge" data-type="journal" data-first="false" data-keywords="stochastic computing edge detection accelerator image processing">
                     <span class="pub-num" aria-hidden="true">[22]</span>
                     <div class="pub-info">
                         <p class="pub-title">StEdge: A Low-Power Real-Time Hardware Accelerator for Edge Detection Using Stochastic Computing</p>
@@ -959,7 +887,7 @@
                         <a href="https://www.mdpi.com/2813-6640/4/4/19" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-tessera" data-type="conference" data-first="true" data-keywords="MOSAIC heterogeneous NPU HPU simulator design space exploration DSE tiles dataflow sparsity">
+                <article class="pub-entry" id="pub-tessera" data-type="conference" data-first="true" data-keywords="MOSAIC heterogeneous NPU HPU simulator design space exploration DSE tiles dataflow sparsity">
                     <span class="pub-num" aria-hidden="true">[21]</span>
                     <div class="pub-info">
                         <p class="pub-title">TESSERA: A Workload-Driven Simulation and Design-Space Exploration Framework for Heterogeneous NPUs</p>
@@ -975,7 +903,7 @@
                         <a href="https://arxiv.org/abs/2606.05362" target="_blank" rel="noopener">arXiv</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-dynner" data-type="journal" data-first="true" data-keywords="dynamic power switching activity weight reordering compiler Hamming distance MAC accelerator">
+                <article class="pub-entry" id="pub-dynner" data-type="journal" data-first="true" data-keywords="dynamic power switching activity weight reordering compiler Hamming distance MAC accelerator">
                     <span class="pub-num" aria-hidden="true">[20]</span>
                     <div class="pub-info">
                         <p class="pub-title">DYNNER: Optimizing Dynamic Power Consumption in Deep Learning Accelerators</p>
@@ -989,7 +917,7 @@
                         <a href="https://ieeexplore.ieee.org/document/11664239" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-cosmos" data-type="conference" data-first="true" data-keywords="multimodal context-aware runtime cognitive systems energy lifetime">
+                <article class="pub-entry" id="pub-cosmos" data-type="conference" data-first="true" data-keywords="multimodal context-aware runtime cognitive systems energy lifetime">
                     <span class="pub-num" aria-hidden="true">[19]</span>
                     <div class="pub-info">
                         <p class="pub-title">COSMOS: Designing Energy-Efficient Context-Aware Multimodal Cognitive Systems</p>
@@ -1003,7 +931,7 @@
                         <a href="https://dl.acm.org/doi/10.1145/3816440.3818581" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-dacforum" data-type="workshop" data-first="true" data-keywords="dissertation PhD forum approximate computing edge AI inference">
+                <article class="pub-entry" id="pub-dacforum" data-type="workshop" data-first="true" data-keywords="dissertation PhD forum approximate computing edge AI inference">
                     <span class="pub-num" aria-hidden="true">[18]</span>
                     <div class="pub-info">
                         <p class="pub-title">Approximate Smarter, Not Harder: Designing Context-Aware Efficient Approximate Edge AI Inference Systems</p>
@@ -1014,7 +942,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-edge3d" data-type="conference" data-first="false" data-keywords="3D scene language reasoning object graph vision language VLM edge">
+                <article class="pub-entry" id="pub-edge3d" data-type="conference" data-first="false" data-keywords="3D scene language reasoning object graph vision language VLM edge">
                     <span class="pub-num" aria-hidden="true">[17]</span>
                     <div class="pub-info">
                         <p class="pub-title">Edge-Ready 3D Scene-Language Reasoning with Compact Object Graphs</p>
@@ -1028,7 +956,7 @@
                         <a href="https://ieeexplore.ieee.org/document/11729483" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-katana" data-type="preprint" data-first="false" data-keywords="Kalman filter EKF tracking NPU">
+                <article class="pub-entry" id="pub-katana" data-type="preprint" data-first="false" data-keywords="Kalman filter EKF tracking NPU">
                     <span class="pub-num" aria-hidden="true">[16]</span>
                     <div class="pub-info">
                         <p class="pub-title">KATANA: A Fast, Low-Power Mapping of Kalman Filters onto Edge NPUs for Real-Time Tracking</p>
@@ -1042,7 +970,7 @@
                         <a href="https://arxiv.org/abs/2606.14992" target="_blank" rel="noopener">arXiv</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-fwht" data-type="journal" data-first="false" data-keywords="Walsh Hadamard transform parallel architecture">
+                <article class="pub-entry" id="pub-fwht" data-type="journal" data-first="false" data-keywords="Walsh Hadamard transform parallel architecture">
                     <span class="pub-num" aria-hidden="true">[15]</span>
                     <div class="pub-info">
                         <p class="pub-title">A Scalable Parallel Architecture for Fast Walsh Hadamard Transform</p>
@@ -1056,7 +984,7 @@
                         <a href="https://link.springer.com/article/10.1007/s00034-026-03592-5" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-ramform" data-type="conference" data-first="false" data-keywords="Ramanujan wavelet transform accelerator signal processing">
+                <article class="pub-entry" id="pub-ramform" data-type="conference" data-first="false" data-keywords="Ramanujan wavelet transform accelerator signal processing">
                     <span class="pub-num" aria-hidden="true">[14]</span>
                     <div class="pub-info">
                         <p class="pub-title">RamForm: A Ramanujan Wavelet Transform-Based Accelerator for Energy-Efficient Signal Processing</p>
@@ -1072,8 +1000,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="2025">
-                <h3 class="pub-year reveal">2025</h3>
-                <article class="pub-entry reveal" id="pub-sparsedroop" data-type="journal" data-first="false" data-keywords="voltage droop sparsity DNN accelerator power integrity">
+                <h3 class="pub-year">2025</h3>
+                <article class="pub-entry" id="pub-sparsedroop" data-type="journal" data-first="false" data-keywords="voltage droop sparsity DNN accelerator power integrity">
                     <span class="pub-num" aria-hidden="true">[13]</span>
                     <div class="pub-info">
                         <p class="pub-title">SparseDroop: Hardware&ndash;Software Co-Design for Mitigating Voltage Droop in DNN Accelerators</p>
@@ -1088,7 +1016,7 @@
                         <a href="https://www.mdpi.com/2079-9268/16/1/2" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-hkn" data-type="conference" data-first="true" data-keywords="Hyena Kolmogorov Arnold KAN long convolution NPU CPU GPU HKN">
+                <article class="pub-entry" id="pub-hkn" data-type="conference" data-first="true" data-keywords="Hyena Kolmogorov Arnold KAN long convolution NPU CPU GPU HKN">
                     <span class="pub-num" aria-hidden="true">[12]</span>
                     <div class="pub-info">
                         <p class="pub-title">Towards Efficient Acceleration of Hyena and Kolmogorov&ndash;Arnold Networks on NPUs</p>
@@ -1103,7 +1031,7 @@
                         <a href="https://ieeexplore.ieee.org/document/11412934" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-eco" data-type="workshop" data-first="true" data-keywords="ECO multimodal RGB LiDAR segmentation context-aware NPU demo">
+                <article class="pub-entry" id="pub-eco" data-type="workshop" data-first="true" data-keywords="ECO multimodal RGB LiDAR segmentation context-aware NPU demo">
                     <span class="pub-num" aria-hidden="true">[11]</span>
                     <div class="pub-info">
                         <p class="pub-title">Demo Abstract: ECO: Low Power Context-Aware Multimodal AI on NPUs</p>
@@ -1119,7 +1047,7 @@
                         <a href="https://www.youtube.com/watch?v=9wRXog4LqbY" target="_blank" rel="noopener">Video</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-stobel" data-type="workshop" data-first="false" data-keywords="stochastic computing edge detection demo StoBel">
+                <article class="pub-entry" id="pub-stobel" data-type="workshop" data-first="false" data-keywords="stochastic computing edge detection demo StoBel">
                     <span class="pub-num" aria-hidden="true">[10]</span>
                     <div class="pub-info">
                         <p class="pub-title">Demo Abstract: A Low-Power Real-Time Hardware Accelerator for Edge Detection Using Stochastic Computing</p>
@@ -1134,7 +1062,7 @@
                         <a href="https://github.com/arghadippurdue/StoBelDemo" target="_blank" rel="noopener">Demo</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-llmnpu" data-type="conference" data-first="false" data-keywords="LLM foundation model inference NPU low power">
+                <article class="pub-entry" id="pub-llmnpu" data-type="conference" data-first="false" data-keywords="LLM foundation model inference NPU low power">
                     <span class="pub-num" aria-hidden="true">[9]</span>
                     <div class="pub-info">
                         <p class="pub-title">LLM-NPU: Towards Efficient Foundation Model Inference on Low-Power Neural Processing Units</p>
@@ -1148,7 +1076,7 @@
                         <a href="https://ieeexplore.ieee.org/document/11125797" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-prism" data-type="conference" data-first="true" data-keywords="processing in sensor memory battery-free intermittent BNN AIoT">
+                <article class="pub-entry" id="pub-prism" data-type="conference" data-first="true" data-keywords="processing in sensor memory battery-free intermittent BNN AIoT">
                     <span class="pub-num" aria-hidden="true">[8]</span>
                     <div class="pub-info">
                         <p class="pub-title">PRISM: Toward Energy-Efficient AIoT with Processing-In-Sensor+Memory in Battery-Free Devices</p>
@@ -1162,7 +1090,7 @@
                         <a href="https://ieeexplore.ieee.org/document/11125788" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-grannite" data-type="conference" data-first="true" data-keywords="graph neural network GNN NPU GraphSplit EffOp QuantGr">
+                <article class="pub-entry" id="pub-grannite" data-type="conference" data-first="true" data-keywords="graph neural network GNN NPU GraphSplit EffOp QuantGr">
                     <span class="pub-num" aria-hidden="true">[7]</span>
                     <div class="pub-info">
                         <p class="pub-title">GraNNite: Enabling High-Performance Execution of Graph Neural Networks on Resource-Constrained Neural Processing Units</p>
@@ -1179,7 +1107,7 @@
                         <a href="https://www.intel.com/content/www/us/en/developer/videos/enabling-high-performance-execution-of-gnn-on-npu.html" target="_blank" rel="noopener">Webinar</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-xamba" data-type="workshop" data-first="true" data-keywords="Mamba state space model SSM CumBA ReduBA ActiBA NPU">
+                <article class="pub-entry" id="pub-xamba" data-type="workshop" data-first="true" data-keywords="Mamba state space model SSM CumBA ReduBA ActiBA NPU">
                     <span class="pub-num" aria-hidden="true">[6]</span>
                     <div class="pub-info">
                         <p class="pub-title">XAMBA: Enabling Efficient State Space Models on Resource-Constrained Neural Processing Units</p>
@@ -1197,8 +1125,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="2024">
-                <h3 class="pub-year reveal">2024</h3>
-                <article class="pub-entry reveal" id="pub-systemmx" data-type="journal" data-first="false" data-keywords="SysteMMX multimodal RGB depth segmentation edge cloud collaborative">
+                <h3 class="pub-year">2024</h3>
+                <article class="pub-entry" id="pub-systemmx" data-type="journal" data-first="false" data-keywords="SysteMMX multimodal RGB depth segmentation edge cloud collaborative">
                     <span class="pub-num" aria-hidden="true">[5]</span>
                     <div class="pub-info">
                         <p class="pub-title">Towards Energy-Accuracy Scalable Multimodal Cognitive Systems</p>
@@ -1212,7 +1140,7 @@
                         <a href="https://ieeexplore.ieee.org/document/10752679" target="_blank" rel="noopener">Paper</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pub-drax" data-type="journal" data-first="true" data-keywords="DRAX distributed approximate multiview collaborative inference smart cameras FPGA">
+                <article class="pub-entry" id="pub-drax" data-type="journal" data-first="true" data-keywords="DRAX distributed approximate multiview collaborative inference smart cameras FPGA">
                     <span class="pub-num" aria-hidden="true">[4]</span>
                     <div class="pub-info">
                         <p class="pub-title">Toward Energy-Efficient Collaborative Inference Using Multisystem Approximations</p>
@@ -1229,8 +1157,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="2023">
-                <h3 class="pub-year reveal">2023</h3>
-                <article class="pub-entry reveal" id="pub-hipedap" data-type="journal" data-first="true" data-keywords="Ramanujan filter bank hidden periodicity approximate accelerator">
+                <h3 class="pub-year">2023</h3>
+                <article class="pub-entry" id="pub-hipedap" data-type="journal" data-first="true" data-keywords="Ramanujan filter bank hidden periodicity approximate accelerator">
                     <span class="pub-num" aria-hidden="true">[3]</span>
                     <div class="pub-info">
                         <p class="pub-title">HIPEDAP: Energy-Efficient Hardware Accelerators for Hidden Periodicity Detection</p>
@@ -1246,8 +1174,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="2021">
-                <h3 class="pub-year reveal">2021</h3>
-                <article class="pub-entry reveal" id="pub-hiper" data-type="conference" data-first="true" data-keywords="Ramanujan filter bank hidden periodicity">
+                <h3 class="pub-year">2021</h3>
+                <article class="pub-entry" id="pub-hiper" data-type="conference" data-first="true" data-keywords="Ramanujan filter bank hidden periodicity">
                     <span class="pub-num" aria-hidden="true">[2]</span>
                     <div class="pub-info">
                         <p class="pub-title">HIPER: Low Power, High Performance and Area-Efficient Hardware Accelerators for Hidden Periodicity Detection using Ramanujan Filter Banks</p>
@@ -1263,8 +1191,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="2020">
-                <h3 class="pub-year reveal">2020</h3>
-                <article class="pub-entry reveal" id="pub-aspcon" data-type="conference" data-first="true" data-keywords="Ramanujan filter bank multiplierless hidden periodicity">
+                <h3 class="pub-year">2020</h3>
+                <article class="pub-entry" id="pub-aspcon" data-type="conference" data-first="true" data-keywords="Ramanujan filter bank multiplierless hidden periodicity">
                     <span class="pub-num" aria-hidden="true">[1]</span>
                     <div class="pub-info">
                         <p class="pub-title">An Efficient Multiplier-less Hardware for Hidden Periodicity Detection Using Ramanujan Filter Bank</p>
@@ -1280,8 +1208,8 @@
                 </article>
             </div>
             <div class="pub-group" data-group="patents" id="patents">
-                <h3 class="pub-year reveal">Patents</h3>
-                <article class="pub-entry reveal" id="pat-weight-reorder" data-type="patent" data-first="false" data-keywords="patent DYNNER switching power weight reordering compiler">
+                <h3 class="pub-year">Patents</h3>
+                <article class="pub-entry" id="pat-weight-reorder" data-type="patent" data-first="false" data-keywords="patent DYNNER switching power weight reordering compiler">
                     <span class="pub-num" aria-hidden="true">[P4]</span>
                     <div class="pub-info">
                         <p class="pub-title">Reducing Power Consumption of Neural Network Accelerator Through Weight Reordering</p>
@@ -1297,7 +1225,7 @@
                         <a href="https://patents.google.com/patent/CN122263980A/en" target="_blank" rel="noopener">CN</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pat-ssm" data-type="patent" data-first="false" data-keywords="patent XAMBA Mamba SSM cumulative sum matrix multiplication">
+                <article class="pub-entry" id="pat-ssm" data-type="patent" data-first="false" data-keywords="patent XAMBA Mamba SSM cumulative sum matrix multiplication">
                     <span class="pub-num" aria-hidden="true">[P3]</span>
                     <div class="pub-info">
                         <p class="pub-title">High Performance Execution of State Space Models on Neural Network Accelerators</p>
@@ -1312,7 +1240,7 @@
                         <a href="https://patents.google.com/patent/WO2026169351A1/en" target="_blank" rel="noopener">WO</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pat-gnn" data-type="patent" data-first="true" data-keywords="patent GraNNite GNN graph neural network NPU">
+                <article class="pub-entry" id="pat-gnn" data-type="patent" data-first="true" data-keywords="patent GraNNite GNN graph neural network NPU">
                     <span class="pub-num" aria-hidden="true">[P2]</span>
                     <div class="pub-info">
                         <p class="pub-title">Graph Neural Network Execution on Neural Processing Unit</p>
@@ -1328,7 +1256,7 @@
                         <a href="https://patents.google.com/patent/CN122072826A/en" target="_blank" rel="noopener">CN</a>
                     </div>
                 </article>
-                <article class="pub-entry reveal" id="pat-fp-int" data-type="patent" data-first="false" data-keywords="patent floating point integer datapath quantization NPU">
+                <article class="pub-entry" id="pat-fp-int" data-type="patent" data-first="false" data-keywords="patent floating point integer datapath quantization NPU">
                     <span class="pub-num" aria-hidden="true">[P1]</span>
                     <div class="pub-info">
                         <p class="pub-title">Executing Floating-Point Model Through Integer Datapath in Neural Processing Unit</p>
@@ -1345,63 +1273,66 @@
             </div>
             </div>
             <p class="pub-empty" id="pubEmpty" hidden>No publications match these filters. <button type="button" id="pubReset">Clear filters</button></p>
-            <p class="pub-legend reveal"><sup>*</sup> Equal contribution. My name is highlighted. Numbers count down from the newest item.</p>
+            <p class="pub-legend"><sup>*</sup> Equal contribution. My name is highlighted. Numbers count down from the newest item.</p>
+            </div>
         </div>
     </section>
 
     <!-- ==================== HONORS ==================== -->
     <section id="awards" class="section" data-label="Honors" data-keywords="awards fellowships medals prizes recognition news coverage">
-        <div class="container">
-            <span class="section-number reveal">07</span>
-            <h2 class="section-title reveal">Awards &amp; Honors</h2>
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Awards &amp; Honors</h2>
+            </header>
+            <div class="section-body">
             <div class="awards-grid">
-                <div class="award-card reveal">
-                    <span class="award-year">2022, 2024, 2026</span>
+                <div class="award-card">
+                    <p class="award-year">2022, 2024, 2026</p>
                     <h3 class="award-title">DAC Young Fellow (three times)</h3>
                     <p class="award-desc">Selected for the Design Automation Conference&rsquo;s program for early-career researchers in EDA and computer-aided design, at DAC 2022, 2024, and 2026.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2026</span>
+                <div class="award-card">
+                    <p class="award-year">2026</p>
                     <h3 class="award-title">DAC PhD Forum &amp; ACM SIGDA Travel Grant</h3>
                     <p class="award-desc">Presented my dissertation research at the DAC 2026 PhD Forum in Long Beach, supported by an ACM SIGDA travel grant.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2026</span>
+                <div class="award-card">
+                    <p class="award-year">2026</p>
                     <h3 class="award-title">Best Lightning Talk Award</h3>
                     <p class="award-desc">Awarded at the 3rd Annual Workshop on Chips and AI, hosted by Purdue&rsquo;s Institute of CHIPS and AI, for COSMOS. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7511077238482575360/" target="_blank" rel="noopener">Announcement</a></p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2025</span>
+                <div class="award-card">
+                    <p class="award-year">2025</p>
                     <h3 class="award-title">Best Poster, SRC CoCoSys Annual Review</h3>
                     <p class="award-desc">Theme 4 winner for ECO at the 2025 Annual Review of CoCoSys, an SRC JUMP 2.0 center, announced in SRC&rsquo;s Connections newsletter.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2025</span>
+                <div class="award-card">
+                    <p class="award-year">2025</p>
                     <h3 class="award-title">Best Poster &amp; Demonstration Award</h3>
                     <p class="award-desc">SRC CogniSense 2025 Annual Review, for research on energy-efficient multimodal perception for low-power intelligent sensors.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2022&ndash;2026</span>
+                <div class="award-card">
+                    <p class="award-year">2022&ndash;2026</p>
                     <h3 class="award-title">Purdue ECE STAR Fellowship</h3>
                     <p class="award-desc">Competitively awarded to top doctoral student applicants in Electrical and Computer Engineering.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2020</span>
+                <div class="award-card">
+                    <p class="award-year">2020</p>
                     <h3 class="award-title">GATE All India Rank 5</h3>
                     <p class="award-desc">All India Rank 5 in Electronics and Communication Engineering in GATE 2020, India&rsquo;s national graduate engineering exam. Featured in The Times of India.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2020</span>
+                <div class="award-card">
+                    <p class="award-year">2020</p>
                     <h3 class="award-title">University Gold Medal</h3>
                     <p class="award-desc">Highest overall marks in B.E. Electronics &amp; Telecommunication Engineering at Jadavpur University; one of eight medals at the 2020 convocation.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2016</span>
+                <div class="award-card">
+                    <p class="award-year">2016</p>
                     <h3 class="award-title">JBNSTS Senior Scholar</h3>
                     <p class="award-desc">One of 47 students selected in West Bengal through a multi-stage process of written tests and interviews.</p>
                 </div>
-                <div class="award-card reveal">
-                    <span class="award-year">2016</span>
+                <div class="award-card">
+                    <p class="award-year">2016</p>
                     <h3 class="award-title">State Rank 10, Higher Secondary</h3>
                     <p class="award-desc">Top 10 out of ~700,000 candidates statewide in the West Bengal Higher Secondary (10+2) examination.</p>
                 </div>
@@ -1451,43 +1382,38 @@
                 </div>
             </details>
 
-            <h3 class="subsection-title spaced reveal">In the news</h3>
+            <h3 class="subsection-title spaced">In the news</h3>
             <ul class="coverage-list">
-                <li class="reveal">
-                    <span class="coverage-date">Oct 2026</span>
-                    <p class="coverage-text">SRC announced first place for <strong>Systems Lightning Talk</strong> at the CogniSense 2026 Annual Review for our IJCNN 2026 paper. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7515822362458750976/" target="_blank" rel="noopener">Post</a></p>
-                </li>
-                <li class="reveal">
+                <li>
                     <span class="coverage-date">Sep 2026</span>
                     <p class="coverage-text">Purdue&rsquo;s Institute of CHIPS and AI announced the <strong>Best Lightning Talk Award</strong> for COSMOS. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7511077238482575360/" target="_blank" rel="noopener">Post</a></p>
                 </li>
-                <li class="reveal">
-                    <span class="coverage-date">Jun 2026</span>
-                    <p class="coverage-text">Purdue ECE News: my advisor&rsquo;s <strong>Intel 2025 Outstanding Researcher Award</strong> for heterogeneous AI computing on CPUs, GPUs, and NPUs. <a href="https://engineering.purdue.edu/ECE/News/2026/purdue-ece-prof-vijay-raghunathan-receives-intel-2025-outstanding-researcher-award" target="_blank" rel="noopener">Story</a></p>
-                </li>
-                <li class="reveal">
+                <li>
                     <span class="coverage-date">Jun 2025</span>
                     <p class="coverage-text">intel.com: <strong>developer webinar on GraNNite</strong> for running graph neural networks on Intel NPUs. <a href="https://www.intel.com/content/www/us/en/developer/videos/enabling-high-performance-execution-of-gnn-on-npu.html" target="_blank" rel="noopener">Webinar page</a></p>
                 </li>
-                <li class="reveal">
+                <li>
                     <span class="coverage-date">Apr 2025</span>
                     <p class="coverage-text">SRC Connections newsletter named me the <strong>Theme 4 winner</strong> of the CoCoSys 2025 Annual Review.</p>
                 </li>
-                <li class="reveal">
+                <li>
                     <span class="coverage-date">2020</span>
                     <p class="coverage-text">The Times of India: <strong>&ldquo;Bengal boy on GATE Top-5 list&rdquo;</strong>, on my All India Rank 5 in GATE 2020.</p>
                 </li>
             </ul>
+            </div>
         </div>
     </section>
 
     <!-- ==================== TALKS ==================== -->
-    <section id="talks" class="section section-alt" data-label="Talks" data-keywords="presentations posters tutorials webinars invited conference">
-        <div class="container">
-            <span class="section-number reveal">08</span>
-            <h2 class="section-title reveal">Talks &amp; Presentations</h2>
-            <p class="section-subtitle reveal">Conference talks, a DAC tutorial, invited talks, posters, and demos.</p>
-            <div class="filter-bar reveal" id="talkFilters" role="group" aria-label="Filter talks by type">
+    <section id="talks" class="section" data-label="Talks" data-keywords="presentations posters tutorials webinars invited conference">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Talks &amp; Presentations</h2>
+            </header>
+            <div class="section-body">
+            <p class="section-subtitle">Conference talks, a DAC tutorial, invited talks, posters, and demos.</p>
+            <div class="filter-bar" id="talkFilters" role="group" aria-label="Filter talks by type">
                 <button type="button" class="chip" data-filter="all" aria-pressed="true">All <span class="chip-count"></span></button>
                 <button type="button" class="chip" data-filter="talk" aria-pressed="false">Talks &amp; tutorials <span class="chip-count"></span></button>
                 <button type="button" class="chip" data-filter="poster" aria-pressed="false">Posters &amp; demos <span class="chip-count"></span></button>
@@ -1496,9 +1422,9 @@
             <!-- To add a talk: copy an <li class="talk-item"> block. data-kind: "talk" or "poster"; add " invited" for invited talks. -->
             <div class="talks-wrap" id="talksWrap">
                 <div class="talk-group">
-                    <h3 class="talk-year reveal">2026</h3>
+                    <h3 class="talk-year">2026</h3>
                     <ol class="talk-list">
-                    <li class="talk-item reveal" id="talk-iiswc26" data-kind="talk">
+                    <li class="talk-item" id="talk-iiswc26" data-kind="talk">
                         <span class="talk-date">Sep 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">TESSERA: A Workload-Driven Simulation and Design-Space Exploration Framework for Heterogeneous NPUs</p>
@@ -1507,7 +1433,7 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/11766206" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-chipsai26" data-kind="talk">
+                    <li class="talk-item" id="talk-chipsai26" data-kind="talk">
                         <span class="talk-date">Sep 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">COSMOS: Designing Energy-Efficient Context-Aware Multimodal Cognitive Systems</p>
@@ -1516,7 +1442,7 @@
                         </div>
                         <div class="talk-links"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7511077238482575360/" target="_blank" rel="noopener">Award</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-islped26" data-kind="talk">
+                    <li class="talk-item" id="talk-islped26" data-kind="talk">
                         <span class="talk-date">Aug 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">COSMOS: Designing Energy-Efficient Context-Aware Multimodal Cognitive Systems</p>
@@ -1524,7 +1450,7 @@
                         </div>
                         <div class="talk-links"><a href="https://dl.acm.org/doi/10.1145/3816440.3818581" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-dac26-tutorial" data-kind="talk invited">
+                    <li class="talk-item" id="talk-dac26-tutorial" data-kind="talk invited">
                         <span class="talk-date">Jul 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">Inside the NPU: Architecture Foundations and Efficient Model Mapping</p>
@@ -1532,7 +1458,7 @@
                             <p class="talk-note">Co-presented with Dr. Arnab Raha (Intel)</p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-dac26-forum" data-kind="poster">
+                    <li class="talk-item" id="talk-dac26-forum" data-kind="poster">
                         <span class="talk-date">Jul 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">Approximate Smarter, Not Harder: Designing Context-Aware Efficient Approximate Edge AI Inference Systems</p>
@@ -1540,7 +1466,7 @@
                             <p class="talk-note">Supported by an ACM SIGDA travel grant</p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-dac26-yf" data-kind="poster">
+                    <li class="talk-item" id="talk-dac26-yf" data-kind="poster">
                         <span class="talk-date">Jul 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO: Low Power Context-Aware Multimodal AI on NPUs</p>
@@ -1548,7 +1474,7 @@
                         </div>
                         <div class="talk-links"><a href="https://github.com/arghadippurdue/ECO_Demo" target="_blank" rel="noopener">Code</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-cocosys26" data-kind="talk">
+                    <li class="talk-item" id="talk-cocosys26" data-kind="talk">
                         <span class="talk-date">Mar 2026</span>
                         <div class="talk-body">
                             <p class="talk-title">XAMBA: Enabling Efficient State Space Models on Resource-Constrained NPUs</p>
@@ -1560,9 +1486,9 @@
                     </ol>
                 </div>
                 <div class="talk-group">
-                    <h3 class="talk-year reveal">2025</h3>
+                    <h3 class="talk-year">2025</h3>
                     <ol class="talk-list">
-                    <li class="talk-item reveal" id="talk-icedge25" data-kind="talk invited">
+                    <li class="talk-item" id="talk-icedge25" data-kind="talk invited">
                         <span class="talk-date">Dec 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">Towards Efficient Acceleration of Hyena and Kolmogorov&ndash;Arnold Networks on NPUs</p>
@@ -1570,7 +1496,7 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/11412934" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-cognisense25" data-kind="talk">
+                    <li class="talk-item" id="talk-cognisense25" data-kind="talk">
                         <span class="talk-date">Oct 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO: Low Power Context-Aware Multimodal AI on NPUs</p>
@@ -1578,14 +1504,14 @@
                             <p class="talk-note"><strong>Best Poster &amp; Demonstration Award</strong></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-chipsai25" data-kind="poster">
+                    <li class="talk-item" id="talk-chipsai25" data-kind="poster">
                         <span class="talk-date">Oct 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO demo and PRISM poster</p>
                             <p class="talk-venue"><span class="talk-tag poster">Demo &amp; posters</span><span class="talk-event">Purdue Institute of CHIPS and AI Workshop 2025</span><span>West Lafayette, IN</span></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-techno25" data-kind="talk invited">
+                    <li class="talk-item" id="talk-techno25" data-kind="talk invited">
                         <span class="talk-date">Aug 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">Insights to Excellence: An Interactive Session with Students</p>
@@ -1593,7 +1519,7 @@
                             <p class="talk-note">On GATE preparation, research, and career paths in engineering</p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-islped25" data-kind="poster">
+                    <li class="talk-item" id="talk-islped25" data-kind="poster">
                         <span class="talk-date">Aug 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO: Low Power Context-Aware Multimodal AI on NPUs</p>
@@ -1601,7 +1527,7 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/11261815" target="_blank" rel="noopener">Paper</a><a href="https://www.youtube.com/watch?v=9wRXog4LqbY" target="_blank" rel="noopener">Video</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-coins25" data-kind="talk">
+                    <li class="talk-item" id="talk-coins25" data-kind="talk">
                         <span class="talk-date">Aug 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">PRISM: Toward Energy-Efficient AIoT with Processing-In-Sensor+Memory in Battery-Free Devices</p>
@@ -1609,7 +1535,7 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/11125788" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-webinar25" data-kind="talk invited">
+                    <li class="talk-item" id="talk-webinar25" data-kind="talk invited">
                         <span class="talk-date">Jun 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">Enable High-Performance Operation of Graph Neural Networks on Intel NPUs</p>
@@ -1617,7 +1543,7 @@
                         </div>
                         <div class="talk-links"><a href="https://www.intel.com/content/www/us/en/developer/videos/enabling-high-performance-execution-of-gnn-on-npu.html" target="_blank" rel="noopener">Watch</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-ijcnn25" data-kind="poster">
+                    <li class="talk-item" id="talk-ijcnn25" data-kind="poster">
                         <span class="talk-date">Jun 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">GraNNite: Enabling High-Performance Execution of Graph Neural Networks on Resource-Constrained NPUs</p>
@@ -1625,7 +1551,7 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/11227197" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-iclr25" data-kind="poster">
+                    <li class="talk-item" id="talk-iclr25" data-kind="poster">
                         <span class="talk-date">Apr 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">XAMBA: Enabling Efficient State Space Models on Resource-Constrained NPUs</p>
@@ -1633,7 +1559,7 @@
                         </div>
                         <div class="talk-links"><a href="https://openreview.net/forum?id=5kKdgokvCj" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-cocosys25" data-kind="poster">
+                    <li class="talk-item" id="talk-cocosys25" data-kind="poster">
                         <span class="talk-date">Mar 2025</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO and GraNNite posters, and a research task talk with Prof. Vijay Raghunathan</p>
@@ -1644,9 +1570,9 @@
                     </ol>
                 </div>
                 <div class="talk-group">
-                    <h3 class="talk-year reveal">2024</h3>
+                    <h3 class="talk-year">2024</h3>
                     <ol class="talk-list">
-                    <li class="talk-item reveal" id="talk-wfiot24" data-kind="talk">
+                    <li class="talk-item" id="talk-wfiot24" data-kind="talk">
                         <span class="talk-date">Nov 2024</span>
                         <div class="talk-body">
                             <p class="talk-title">Toward Energy-Efficient Collaborative Inference Using Multisystem Approximations</p>
@@ -1655,14 +1581,14 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/10433860" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-chipsai24" data-kind="poster">
+                    <li class="talk-item" id="talk-chipsai24" data-kind="poster">
                         <span class="talk-date">Oct 2024</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO: Designing Energy-Efficient Multimodal Cognitive Systems Using Efficient Context Handling</p>
                             <p class="talk-venue"><span class="talk-tag poster">Poster</span><span class="talk-event">Purdue Institute of CHIPS and AI kickoff</span></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-dac24" data-kind="poster">
+                    <li class="talk-item" id="talk-dac24" data-kind="poster">
                         <span class="talk-date">Jun 2024</span>
                         <div class="talk-body">
                             <p class="talk-title">ECO: Designing Energy-Efficient Multimodal Cognitive Systems Using Efficient Context Handling</p>
@@ -1672,37 +1598,37 @@
                     </ol>
                 </div>
                 <div class="talk-group">
-                    <h3 class="talk-year reveal">2020&ndash;2023</h3>
+                    <h3 class="talk-year">2020&ndash;2023</h3>
                     <ol class="talk-list">
-                    <li class="talk-item reveal" id="talk-ju23" data-kind="talk invited">
+                    <li class="talk-item" id="talk-ju23" data-kind="talk invited">
                         <span class="talk-date">Jan 2023</span>
                         <div class="talk-body">
                             <p class="talk-title">Embedded Systems and IoT Workshop</p>
                             <p class="talk-venue"><span class="talk-tag invited">Invited talk</span><span class="talk-event">Jadavpur University</span><span>Kolkata, India</span></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-cbric22-industry" data-kind="talk">
+                    <li class="talk-item" id="talk-cbric22-industry" data-kind="talk">
                         <span class="talk-date">Dec 2022</span>
                         <div class="talk-body">
                             <p class="talk-title">Toward Energy-Efficient Collaborative Inference Using Multisystem Approximations</p>
                             <p class="talk-venue"><span class="talk-tag">Industry talk</span><span class="talk-event">SRC C-BRIC industry meeting</span></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-cbric22" data-kind="poster">
+                    <li class="talk-item" id="talk-cbric22" data-kind="poster">
                         <span class="talk-date">Oct 2022</span>
                         <div class="talk-body">
                             <p class="talk-title">Towards Energy-Efficient Collaborative Inference using Multi-System Approximations</p>
                             <p class="talk-venue"><span class="talk-tag poster">Poster</span><span class="talk-event">SRC C-BRIC Annual Review</span><span>West Lafayette, IN</span></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-dac22" data-kind="poster">
+                    <li class="talk-item" id="talk-dac22" data-kind="poster">
                         <span class="talk-date">Jul 2022</span>
                         <div class="talk-body">
                             <p class="talk-title">Approximate Multiview Inference System (AMIS)</p>
                             <p class="talk-venue"><span class="talk-tag poster">Poster</span><span class="talk-event">DAC 2022 Young Fellows program</span><span>San Francisco, CA</span></p>
                         </div>
                     </li>
-                    <li class="talk-item reveal" id="talk-vlsid21" data-kind="talk">
+                    <li class="talk-item" id="talk-vlsid21" data-kind="talk">
                         <span class="talk-date">Feb 2021</span>
                         <div class="talk-body">
                             <p class="talk-title">HIPER: Low Power, High Performance and Area-Efficient Hardware Accelerators for Hidden Periodicity Detection</p>
@@ -1710,7 +1636,7 @@
                         </div>
                         <div class="talk-links"><a href="https://ieeexplore.ieee.org/document/9407448" target="_blank" rel="noopener">Paper</a></div>
                     </li>
-                    <li class="talk-item reveal" id="talk-aspcon20" data-kind="talk">
+                    <li class="talk-item" id="talk-aspcon20" data-kind="talk">
                         <span class="talk-date">Oct 2020</span>
                         <div class="talk-body">
                             <p class="talk-title">An Efficient Multiplier-less Hardware for Hidden Periodicity Detection Using Ramanujan Filter Bank</p>
@@ -1721,16 +1647,19 @@
                     </ol>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
     <!-- ==================== SERVICE ==================== -->
     <section id="service" class="section" data-label="Service" data-keywords="reviewing reviewer peer review program committee TPC mentoring outreach memberships">
-        <div class="container">
-            <span class="section-number reveal">09</span>
-            <h2 class="section-title reveal">Service &amp; Mentoring</h2>
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Service &amp; Mentoring</h2>
+            </header>
+            <div class="section-body">
             <div class="service-grid">
-                <div class="service-card reveal">
+                <div class="service-card">
                     <h3>Peer review</h3>
                     <p class="service-lead">Completed reviews for journals, conferences, and workshops.</p>
                     <h4>Journals</h4>
@@ -1749,7 +1678,7 @@
                             <span class="skill-pill">SCALE Workshop at ICML 2026</span>
                     </div>
                 </div>
-                <div class="service-card reveal">
+                <div class="service-card">
                     <h3>Committees &amp; memberships</h3>
                     <p class="service-lead">Program committee service and professional societies.</p>
                     <ul class="timeline-bullets">
@@ -1763,13 +1692,13 @@
                         <li>Talk at the Embedded Systems and IoT Workshop, Jadavpur University (2023)</li>
                     </ul>
                 </div>
-                <div class="service-card span-2 reveal">
+                <div class="service-card span-2">
                     <h3>Mentoring</h3>
                     <p class="service-lead">I mentor student research with Prof. Vijay Raghunathan at Purdue, and with Prof. Mrinal Kanti Naskar and Dr. Arnab Raha at Jadavpur University.</p>
                     <div class="mentee-grid">
                         <div class="mentee">
                             <p class="mentee-title">Ph.D. students, Embedded Systems Lab, Purdue (2025&ndash;present)</p>
-                            <p>NPU simulation and design-space exploration, heterogeneous CPU/GPU/NPU mapping, and vision-language reasoning at the edge. Joint work includes <a href="#pub-tessera">TESSERA</a> (IISWC 2026), <a href="#pub-bident">BIDENT</a> (VLSID 2027), and <a href="#pub-edge3d">Edge-Ready 3D</a> (IJCNN 2026), which won first place for Systems Lightning Talk at SRC CogniSense 2026.</p>
+                            <p>NPU simulation and design-space exploration, heterogeneous CPU/GPU/NPU mapping, and vision-language reasoning at the edge. Joint work includes <a href="#pub-tessera">TESSERA</a> (IISWC 2026), <a href="#pub-bident">BIDENT</a> (VLSID 2027), and <a href="#pub-edge3d">Edge-Ready 3D</a> (IJCNN 2026).</p>
                         </div>
                         <div class="mentee">
                             <p class="mentee-title">B.E., M.E., and Ph.D. students, ADES Lab, Jadavpur University (2020&ndash;present)</p>
@@ -1778,16 +1707,19 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
     <!-- ==================== SKILLS ==================== -->
-    <section id="skills" class="section section-alt" data-label="Skills" data-keywords="languages tools EDA hardware platforms frameworks">
-        <div class="container">
-            <span class="section-number reveal">10</span>
-            <h2 class="section-title reveal">Technical Skills</h2>
+    <section id="skills" class="section" data-label="Skills" data-keywords="languages tools EDA hardware platforms frameworks">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Technical Skills</h2>
+            </header>
+            <div class="section-body">
             <div class="skills-grid">
-                <div class="skill-category reveal">
+                <div class="skill-category">
                     <h3 class="skill-category-title">Languages</h3>
                     <div class="skill-pills">
                         <span class="skill-pill">CUDA</span>
@@ -1802,7 +1734,7 @@
                         <span class="skill-pill">LaTeX</span>
                     </div>
                 </div>
-                <div class="skill-category reveal">
+                <div class="skill-category">
                     <h3 class="skill-category-title">EDA &amp; Developer Tools</h3>
                     <div class="skill-pills">
                         <span class="skill-pill">Synopsys Design Compiler</span>
@@ -1822,7 +1754,7 @@
                         <span class="skill-pill">TestStand</span>
                     </div>
                 </div>
-                <div class="skill-category reveal">
+                <div class="skill-category">
                     <h3 class="skill-category-title">Hardware Platforms</h3>
                     <div class="skill-pills">
                         <span class="skill-pill">FPGAs (Stratix IV, Cyclone IV)</span>
@@ -1834,7 +1766,7 @@
                         <span class="skill-pill">NetFPGA</span>
                     </div>
                 </div>
-                <div class="skill-category reveal">
+                <div class="skill-category">
                     <h3 class="skill-category-title">Frameworks &amp; Research</h3>
                     <div class="skill-pills">
                         <span class="skill-pill">PyTorch</span>
@@ -1847,15 +1779,18 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
     <!-- ==================== RESUME ==================== -->
     <section id="resume" class="section" data-label="Resume" data-keywords="CV curriculum vitae download pdf">
-        <div class="container">
-            <span class="section-number reveal">11</span>
-            <h2 class="section-title reveal">Resume</h2>
-            <div class="resume-section reveal">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Resume</h2>
+            </header>
+            <div class="section-body">
+            <div class="resume-section">
                 <div class="resume-embed">
                     <object data="materials/Arghadip_resume_1_page_2026_09_16.pdf" type="application/pdf" width="100%" height="800" aria-label="One-page resume (PDF)">
                         <p>Your browser does not support embedded PDFs. <a href="materials/Arghadip_resume_1_page_2026_09_16.pdf" download="Arghadip_Das_Resume.pdf">Download the Resume</a> instead.</p>
@@ -1866,15 +1801,18 @@
                     <a href="materials/Arghadip_resume_1_page_2026_09_16.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Open in a new tab</a>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
     <!-- ==================== CONTACT ==================== -->
-    <section id="contact" class="section section-alt" data-label="Contact" data-keywords="email reach out connect">
-        <div class="container">
-            <span class="section-number reveal">12</span>
-            <h2 class="section-title reveal">Get In Touch</h2>
-            <div class="contact-content reveal">
+    <section id="contact" class="section" data-label="Contact" data-keywords="email reach out connect">
+        <div class="container section-grid">
+            <header class="section-head">
+                <h2 class="section-title">Get In Touch</h2>
+            </header>
+            <div class="section-body">
+            <div class="contact-content">
                 <p class="contact-text">I am always happy to talk about <strong>efficient AI</strong>, <strong>NPU architecture</strong>, and <strong class="nowrap">hardware&ndash;software co-design</strong>. Whether you are a researcher, a student, or building edge AI systems, feel free to reach out.</p>
                 <div class="contact-info">
                     <span class="contact-line"><a href="mailto:das169@purdue.edu" class="contact-email">das169@purdue.edu</a></span>
@@ -1883,24 +1821,25 @@
                 </div>
                 <div class="contact-socials">
                 <a href="https://www.linkedin.com/in/arghadip-das/" target="_blank" rel="noopener" aria-label="LinkedIn" data-tip="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
                 <a href="https://github.com/arghadippurdue" target="_blank" rel="noopener" aria-label="GitHub" data-tip="GitHub">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                 </a>
                 <a href="https://scholar.google.com/citations?user=d3XoqSEAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" data-tip="Google Scholar">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
                 </a>
                 <a href="https://orcid.org/0000-0001-6043-4685" target="_blank" rel="noopener" aria-label="ORCID" data-tip="ORCID">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
                 </a>
                 <a href="https://dblp.org/pid/291/4716.html" target="_blank" rel="noopener" aria-label="DBLP" data-tip="DBLP">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" aria-hidden="true"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><path d="M7.5 7.5h9M7.5 11.5h9M7.5 15.5h5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="3.5" y="2.5" width="17" height="19" rx="2.5"/><path d="M7.5 7.5h9M7.5 11.5h9M7.5 15.5h5"/></svg>
                 </a>
                 <a href="mailto:das169@purdue.edu" aria-label="Email" data-tip="Email">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
                 </a>
                 </div>
+            </div>
             </div>
         </div>
     </section>

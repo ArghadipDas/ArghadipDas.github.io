@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNav();
     initScrollUI();
-    initScrollReveal();
-    initHeroCanvas();
-    initStatCounters();
     initPublications();
     initChipFilter({
         bar: 'researchFilters',
@@ -63,24 +60,24 @@ function initTheme() {
     updateThemeControls();
 }
 
+/* Light paper is the default; the dark "night" theme is opt-in and remembered */
 function updateThemeControls() {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const toggle = document.getElementById('themeToggle');
     if (toggle) {
-        toggle.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
-        toggle.setAttribute('data-tip', isLight ? 'Dark theme' : 'Light theme');
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+        toggle.setAttribute('data-tip', isDark ? 'Light theme' : 'Dark theme');
     }
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', isLight ? '#f6f7f9' : '#0a0a0f');
+    if (meta) meta.setAttribute('content', isDark ? '#1c1d20' : '#f5f5f2');
 }
 
 function toggleTheme() {
     const root = document.documentElement;
-    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) { /* storage unavailable: theme lasts for this visit */ }
+    try { localStorage.setItem('ad-theme', next); } catch (e) { /* storage unavailable: theme lasts for this visit */ }
     updateThemeControls();
-    document.dispatchEvent(new CustomEvent('themechange'));
 }
 
 /* ==================== NAVIGATION ==================== */
@@ -122,7 +119,7 @@ function initNav() {
     });
 
     // Leaving the mobile layout with the drawer open should not lock scrolling
-    const wide = window.matchMedia('(min-width: 1240px)');
+    const wide = window.matchMedia('(min-width: 1100px)');
     if (wide.addEventListener) {
         wide.addEventListener('change', e => {
             if (e.matches && navLinks.classList.contains('open')) setOpen(false);
@@ -130,15 +127,12 @@ function initNav() {
     }
 }
 
-/* ==================== SCROLL UI: nav state, progress, active section, rail, back to top ==================== */
+/* ==================== SCROLL UI: nav state, active section, back to top ==================== */
 function initScrollUI() {
     const navbar = document.getElementById('navbar');
-    const progress = document.querySelector('.scroll-progress span');
     const backToTop = document.getElementById('backToTop');
     const navLinks = document.querySelectorAll('#navLinks a[href^="#"]');
     const sections = [...document.querySelectorAll('main section[id]')];
-    const rail = buildRail(sections);
-    const railLinks = rail ? rail.querySelectorAll('a') : [];
     let ticking = false;
     let currentId = null;
 
@@ -151,23 +145,15 @@ function initScrollUI() {
             if (on) link.setAttribute('aria-current', 'true');
             else link.removeAttribute('aria-current');
         });
-        railLinks.forEach(link => {
-            const on = link.getAttribute('href') === '#' + id;
-            link.classList.toggle('active', on);
-            if (on) link.setAttribute('aria-current', 'true');
-            else link.removeAttribute('aria-current');
-        });
-        if (rail) rail.classList.toggle('on-hero', id === 'hero');
     }
 
     function update() {
         ticking = false;
         const y = window.scrollY;
         const vh = window.innerHeight;
-        if (navbar) navbar.classList.toggle('scrolled', y > 50);
+        if (navbar) navbar.classList.toggle('scrolled', y > 8);
 
         const max = document.documentElement.scrollHeight - vh;
-        if (progress) progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
         if (backToTop) backToTop.classList.toggle('visible', y > vh * 0.9);
 
         // Active section: the last one whose top has passed 35% of the viewport
@@ -197,206 +183,6 @@ function initScrollUI() {
             const logo = document.querySelector('.nav-logo');
             if (logo) logo.focus({ preventScroll: true });
         });
-    }
-}
-
-function buildRail(sections) {
-    const rail = document.getElementById('sectionRail');
-    if (!rail) return null;
-    const list = document.createElement('ol');
-    sections.forEach(section => {
-        const label = section.dataset.label;
-        if (!label) return;
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = '#' + section.id;
-        a.innerHTML = '<span class="rail-dot" aria-hidden="true"></span><span class="rail-label"></span>';
-        a.querySelector('.rail-label').textContent = label;
-        a.setAttribute('aria-label', label);
-        li.appendChild(a);
-        list.appendChild(li);
-    });
-    rail.appendChild(list);
-    return rail;
-}
-
-/* ==================== SCROLL REVEAL ==================== */
-function initScrollReveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-        reveals.forEach(el => el.classList.add('revealed'));
-        return;
-    }
-
-    const observer = new IntersectionObserver(entries => {
-        // Stagger elements that come into view together; cap the delay so
-        // entries deep in long lists don't lag behind the scroll
-        let batchIdx = 0;
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = Math.min(batchIdx++, 5) * 100;
-
-                setTimeout(() => {
-                    entry.target.classList.add('revealed');
-                }, delay);
-
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    reveals.forEach(el => observer.observe(el));
-}
-
-/* ==================== HERO CANVAS ==================== */
-function initHeroCanvas() {
-    const canvas = document.getElementById('heroCanvas');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    let animId;
-    let nodes = [];
-    let width, height;
-    let rgb = '0, 212, 170';
-    let strength = 1;
-
-    function readColors() {
-        const styles = getComputedStyle(document.documentElement);
-        rgb = (styles.getPropertyValue('--canvas-rgb') || rgb).trim();
-        strength = parseFloat(styles.getPropertyValue('--canvas-strength')) || 1;
-    }
-
-    function resize() {
-        width = canvas.width = canvas.offsetWidth;
-        height = canvas.height = canvas.offsetHeight;
-        generateNodes();
-        // Static frame when motion is reduced (resizing clears the canvas)
-        if (prefersReducedMotion) draw(0);
-    }
-
-    function generateNodes() {
-        nodes = [];
-        const spacing = 80;
-        const cols = Math.ceil(width / spacing) + 1;
-        const rows = Math.ceil(height / spacing) + 1;
-
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                nodes.push({
-                    x: c * spacing + (Math.random() - 0.5) * 20,
-                    y: r * spacing + (Math.random() - 0.5) * 20,
-                    baseX: c * spacing,
-                    baseY: r * spacing,
-                    radius: 1.5 + Math.random() * 1.5,
-                    phase: Math.random() * Math.PI * 2,
-                    speed: 0.003 + Math.random() * 0.005,
-                    drift: 8 + Math.random() * 12
-                });
-            }
-        }
-    }
-
-    function draw(time) {
-        ctx.clearRect(0, 0, width, height);
-
-        nodes.forEach(n => {
-            n.x = n.baseX + Math.sin(time * n.speed + n.phase) * n.drift;
-            n.y = n.baseY + Math.cos(time * n.speed * 0.7 + n.phase) * n.drift * 0.5;
-        });
-
-        const maxDist = 120;
-        ctx.lineWidth = 1;
-
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                const dx = nodes[i].x - nodes[j].x;
-                const dy = nodes[i].y - nodes[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < maxDist) {
-                    const alpha = (1 - dist / maxDist) * 0.08 * strength;
-                    ctx.strokeStyle = `rgba(${rgb}, ${alpha})`;
-                    ctx.beginPath();
-                    ctx.moveTo(nodes[i].x, nodes[i].y);
-                    ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-
-        nodes.forEach(n => {
-            const pulse = 0.4 + 0.6 * Math.sin(time * 0.002 + n.phase);
-            ctx.fillStyle = `rgba(${rgb}, ${(0.15 + pulse * 0.2) * strength})`;
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-            ctx.fill();
-        });
-
-        if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
-    }
-
-    readColors();
-    resize();
-    window.addEventListener('resize', resize);
-    if (!prefersReducedMotion) animId = requestAnimationFrame(draw);
-
-    document.addEventListener('themechange', () => {
-        readColors();
-        if (prefersReducedMotion) draw(0);
-    });
-
-    // Pause when not visible; cancel first so a frame still pending (e.g. a
-    // page opened in a background tab) can't start a second loop
-    document.addEventListener('visibilitychange', () => {
-        cancelAnimationFrame(animId);
-        if (!document.hidden && !prefersReducedMotion) animId = requestAnimationFrame(draw);
-    });
-}
-
-/* ==================== STAT COUNTERS ==================== */
-function initStatCounters() {
-    const stats = document.querySelectorAll('.stat-number');
-    const statsRow = document.querySelector('.stats-row');
-    if (!stats.length || !statsRow || !('IntersectionObserver' in window)) return;
-    let animated = false;
-
-    // The markup holds the final values (shown without JS); start from 0 only
-    // when the count-up animation will run.
-    if (!prefersReducedMotion) stats.forEach(stat => { stat.textContent = format(0, stat); });
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                stats.forEach(stat => animateCounter(stat));
-                observer.disconnect();
-            }
-        });
-    }, { threshold: 0.5 });
-
-    observer.observe(statsRow);
-
-    function format(value, el) {
-        const decimals = parseInt(el.dataset.decimals || '0', 10);
-        return value.toFixed(decimals);
-    }
-
-    function animateCounter(el) {
-        const target = parseFloat(el.dataset.target);
-        if (prefersReducedMotion) {
-            el.textContent = format(target, el);
-            return;
-        }
-        const duration = 1500;
-        const start = performance.now();
-
-        function update(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 3);
-            el.textContent = format(progress < 1 ? Math.round(ease * target * 10) / 10 : target, el);
-            if (progress < 1) requestAnimationFrame(update);
-        }
-
-        requestAnimationFrame(update);
     }
 }
 
@@ -440,11 +226,7 @@ function initPublications() {
             const queryOk = tokens.every(t => entry._hay.includes(t));
             const visible = typeOk && firstOk && queryOk;
             entry.hidden = !visible;
-            if (visible) {
-                shown++;
-                // Filtered-in entries may never have been scrolled past
-                entry.classList.add('revealed');
-            }
+            if (visible) shown++;
         });
 
         groups.forEach(group => {
@@ -532,7 +314,6 @@ function initChipFilter({ bar, items, attr, groups }) {
         nodes.forEach(node => {
             const visible = value === 'all' || (node.dataset[attr] || '').split(' ').includes(value);
             node.hidden = !visible;
-            if (visible) node.classList.add('revealed');
         });
         groupEls.forEach(group => {
             group.hidden = !group.querySelector(items.split(' ').pop() + ':not([hidden])');
@@ -751,7 +532,6 @@ function initPalette() {
             details.open = true;
             details = details.parentElement ? details.parentElement.closest('details') : null;
         }
-        el.classList.add('revealed');
     }
 
     function activate(item) {
@@ -830,7 +610,6 @@ function initPrintHelpers() {
     window.addEventListener('beforeprint', () => {
         opened = [...document.querySelectorAll('details:not([open])')];
         opened.forEach(d => { d.open = true; });
-        document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
     });
     window.addEventListener('afterprint', () => {
         opened.forEach(d => { d.open = false; });
