@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         groups: '#talksWrap .talk-group'
     });
     initPalette();
+    initLightbox();
     initPrintHelpers();
     initCounts();
 });
@@ -592,6 +593,7 @@ function initPalette() {
     openers.forEach(btn => btn.addEventListener('click', open));
 
     document.addEventListener('keydown', e => {
+        if (document.querySelector('dialog[open]')) return; // the figure viewer is open
         const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) || document.activeElement.isContentEditable;
         if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
             e.preventDefault();
@@ -601,6 +603,36 @@ function initPalette() {
             e.preventDefault();
             open();
         }
+    });
+}
+
+/* ==================== FIGURE VIEWER: click a research figure to see it large ==================== */
+function initLightbox() {
+    const dialog = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    const caption = document.getElementById('lightboxCaption');
+    const closeBtn = document.getElementById('lightboxClose');
+    if (!dialog || !img || typeof dialog.showModal !== 'function') return;
+    let opener = null;
+
+    document.querySelectorAll('.figure-zoom').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const thumb = btn.querySelector('img');
+            opener = btn;
+            img.src = btn.dataset.full || thumb.currentSrc || thumb.src;
+            img.alt = thumb.alt;
+            caption.textContent = thumb.alt;
+            dialog.showModal();
+            if (closeBtn) closeBtn.focus();
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', () => dialog.close());
+    // A click on the dimmed backdrop lands on the dialog element itself
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => {
+        img.src = 'data:,';
+        if (opener) opener.focus({ preventScroll: true });
     });
 }
 
